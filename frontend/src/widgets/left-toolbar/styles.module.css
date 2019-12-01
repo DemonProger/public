@@ -1,0 +1,14 @@
+
+
+.Group {
+    margin: 8px;
+    width: 100px;    
+    box-shadow: 4px 4px 2px lightgray;
+}
+
+.Button {
+    margin: 4px;    
+    border: none;
+    background: transparent;
+    color: black;        
+}

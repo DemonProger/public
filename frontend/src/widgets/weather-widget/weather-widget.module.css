@@ -1,0 +1,22 @@
+
+.WeatherWidget {
+    padding: 10px;       
+    border-top: 1px solid gray;
+}
+
+.WeatherCard {
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 10px;
+}
+
+.WeatherIcon {
+    height: 60px;
+    width: 60px;
+}
+
+.WeatherTitle {
+}
+
+.WeatherText {
+   
+}
