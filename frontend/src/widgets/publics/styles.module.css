@@ -9,6 +9,14 @@
   width: 100%;
 }
 
+.Card:hover {
+  cursor: pointer;
+}
+
+.Card:active {
+  background-color: whitesmoke;
+}
+
 .CardBody {
 
 }
