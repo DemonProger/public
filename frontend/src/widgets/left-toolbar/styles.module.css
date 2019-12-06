@@ -1,12 +1,11 @@
 
 
 .Group {
-    margin: 8px;
-    width: 100px;    
+    margin: 8px;    
     box-shadow: 4px 4px 2px lightgray;
 }
 
-.Button {
+.Button {    
     margin: 4px;    
     border: none;
     background: transparent;

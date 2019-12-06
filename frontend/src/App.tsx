@@ -3,29 +3,27 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import './thirdparty/bootstrap/dist/css/bootstrap.css'
 
-import CustomNavbar from './widgets/navbar/navbar'
+import Header from './widgets/header/header'
 import Tollbar from './widgets/left-toolbar/left-toolbar'
-import CardsBox from './widgets/cards/cards-box'
+import CardsBox from './widgets/publics/cards-box'
 import NavMap from './widgets/nav-map/nav-map'
 
 
 const App = () => {
     return (      
       <Container>              
-        <CustomNavbar />  
+        <Header />  
         <Row className="justify-content-md-center">
           <NavMap />          
-        </Row>
-        <Container>
+        </Row>        
           <Row>
-            <Col sm={2} className="d-none d-sm-block">
+            <Col sm={3} className="d-none d-sm-block">
               <Tollbar />
             </Col>
-            <Col sm={10}>
+            <Col sm={9}>
               <CardsBox />
             </Col>
-          </Row>
-        </Container>        
+          </Row>        
       </Container>                     
     )
 }
