@@ -2,7 +2,7 @@
  
 import * as React from "react"
 import { Navbar, Nav, Form, FormControl, Button, Image } from 'react-bootstrap'
-import dashboardIcon from '../../thirdparty/icons/dashboard.svg'
+import dashboardIcon from './dashboard.svg'
 import Styles from './styles.module.css'
 
 

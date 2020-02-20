@@ -3,7 +3,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import './thirdparty/bootstrap/dist/css/bootstrap.css'
 
-import Header, { HeaderProps } from './widgets/header/header'
+import Header from './widgets/templates/header/header'
 import Tollbar from './widgets/left-toolbar/left-toolbar'
 import CardsBox from './widgets/publics/cards-box'
 import NavMap from './widgets/nav-map/nav-map'
