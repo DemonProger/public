@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Card, Col } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import Styles from './styles.module.css'
 
 
@@ -19,4 +20,16 @@ export const PublicCard = () => {
 }
 
 
-export default PublicCard
+const mapStateToProps = (state: any) => {
+  return {
+      
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+     
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PublicCard)

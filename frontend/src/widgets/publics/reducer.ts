@@ -3,23 +3,23 @@
 import { Reducer } from 'redux'
 
 
-interface IPublic {
+export type Public = {
     name: string
     description: string
 }
 
 
-interface IPublicsStore {
-    publics: IPublic[]
+export type PublicsStore = {
+    publics: Public[]
 }
 
 
-const defaultStore : IPublicsStore = {
+const defaultStore : PublicsStore = {
     publics: []
 }
 
 
-export const reducer: Reducer<any> = (state: IPublicsStore = defaultStore, action: any) => {
+export const reducer: Reducer<any> = (state: PublicsStore = defaultStore, action: any) => {
     return state
 }
 
