@@ -11,16 +11,12 @@ import thunkMiddleware from "redux-thunk"
 import { combineReducers } from "redux"
 import { Provider } from 'react-redux'
 import publicsReducer from './widgets/publics/reducer'
-
-
-interface IStoreState {
-    readonly pendingActions: number
-    readonly isAuthenticated: boolean
-}
+import registration from './widgets/registration/reducer'
 
 
 const rootReducer = combineReducers({
-    publicsReducer
+    publicsReducer, 
+    registration
 })
 
 

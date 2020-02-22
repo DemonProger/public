@@ -4,19 +4,17 @@
 import { Reducer } from 'redux'
 
 
-export type AuthorizationState = {
-    isVisible: boolean,
-
+export type RegistrationState = {
+    isVisible?: boolean,
 }
 
 
-const initialState : AuthorizationState = {
-    isVisible: false,
-    
+const initialState : RegistrationState = {
+    isVisible: false,    
 }
 
 
-export const reducer: Reducer<any> = (state: AuthorizationState = initialState, action: any) => {
+export const reducer: Reducer<any> = (state: RegistrationState = initialState, action: any) => {
     return state
 }
 

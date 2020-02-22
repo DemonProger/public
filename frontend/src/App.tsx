@@ -7,6 +7,7 @@ import Header from './widgets/templates/header/header'
 import Tollbar from './widgets/left-toolbar/left-toolbar'
 import CardsBox from './widgets/publics/cards-box'
 import NavMap from './widgets/nav-map/nav-map'
+import Registration from './widgets/registration/registration'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
               <CardsBox />
             </Col>
           </Row>        
+          <Registration />
       </Container>                     
     )
 }
