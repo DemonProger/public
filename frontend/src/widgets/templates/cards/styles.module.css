@@ -1,0 +1,36 @@
+
+.CardWrapper {
+  
+}
+
+.Card {
+  margin: 8px;
+  box-shadow: 5px 5px 5px lightgray;
+  width: 100%;
+}
+
+.Card:hover {
+  cursor: pointer;
+}
+
+.Card:active {
+  background-color: whitesmoke;
+}
+
+.CardBody {
+
+}
+
+.CardTitle {
+
+}
+
+.CardIcon {
+
+}
+
+.CardText {
+
+}
+
+
