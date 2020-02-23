@@ -1,0 +1,331 @@
+
+swagger: "2.0"
+
+info:
+  description: "Public project api"
+  version: "1.0.1"
+  title: "Public project"  
+
+paths:
+
+  /qualities:
+    get:
+      tags:
+      - "Qualities"
+      summary: "Get all available qualities"
+      responses:
+        200:
+          description: "Available qualities"
+          schema:
+             $ref: "#/definitions/QualitiesInfo"            
+
+
+  /movie/add:  
+    put:
+      tags:
+      - "Movies"
+      summary: "Notification from motion about new movie file"
+      description: ""
+      parameters:
+      - name: "movie"
+        description: "Filname of new movie"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "cameraId"
+        description: "Id of camera-source of movie"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "creationTime"
+        description: "creation movie time"
+        in: "query"
+        required: true 
+        type: "string"
+      responses:
+        200:
+          description: OK
+            
+            
+  /storageSize:
+    get: 
+      tags: 
+      - "Analytics"
+      summary: "Statistics of movies sizes"
+      responses:
+        200: 
+          description: "Statistics of movies sizes"
+          schema: 
+            $ref: "#/definitions/MoviesStat"
+            
+            
+  /camerasMemoryIntake:
+    post: 
+      tags: 
+      - "Analytics"
+      summary: "Statistics of memory intake for every camera"
+      parameters: 
+      - name: "body"
+        description: "Configs of cameras for analytics"
+        in: "body"
+        required: true
+        schema: 
+          $ref: "#/definitions/PredictionBody"
+      responses:
+        200: 
+          description: "ok"
+          schema: 
+            $ref: '#/definitions/IntakeStats'
+        500: 
+          description: "Some internal error"
+
+
+  /prediction: 
+    post: 
+      tags: 
+      - "Analytics"
+      summary: "Get prediction of memory fill rate"
+      parameters: 
+      - name: "body"
+        description: "Configs of cameras for analytics"
+        in: "body"
+        required: true
+        schema: 
+          $ref: "#/definitions/PredictionBody"
+      responses:
+        200: 
+          description: "ok"
+          schema: 
+            $ref: '#/definitions/Prediction'
+        500: 
+          description: "some error happened"
+
+  /camera/add:
+    post:
+      tags:
+      - "Cameras"
+      summary: "Run scripts for new camera"
+      description: "Run scripts for new camera"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Camera added to system and some scripts should be runned"
+        required: true
+        schema:
+          $ref: "#/definitions/Camera"
+      responses:
+        200: 
+          description: "OK"
+  
+  /camera/update:
+    put:
+      tags:
+      - "Cameras"
+      summary: "Update an existing camera"
+      description: "Camera object updated. Scripts should be updated."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated config of camera"
+        required: true
+        schema:
+          $ref: "#/definitions/Camera"
+      responses:
+        200: 
+          description: "OK"
+  
+  /camera/delete:
+    delete:
+      tags:
+      - "Cameras"
+      summary: "Deletes a camera and all attached scripts"
+      description: ""
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated config of camera"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            id:
+              type: "string"
+      responses:
+        200: 
+          description: "OK"
+
+
+definitions:
+  Camera:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      movieQualityId:
+        description: "Id of start movie quality from qualities service"
+        type: "integer"
+      url:
+        type: "string"
+        format: "url" 
+      scripts: 
+        type: "array"
+        items: 
+          type: "number"
+      path: 
+        type: "string"
+        description: "Example: ...motion-data/2/"
+      storagePolicy:
+          $ref: "#/definitions/StoragePolicy"
+          
+
+
+  Quality:
+    type: "object"
+    properties:
+      id: 
+        type: "integer"
+      bitrate:
+        type: 'integer'
+        description: "bitrate bps"
+      motionQuality: 
+        type: 'integer'
+        description: 'value for movie_quality in motions config'
+        
+        
+  QualitiesInfo: 
+    type: 'object'
+    properties:
+      highest:
+          $ref: "#/definitions/Quality"
+      high:
+          $ref: "#/definitions/Quality"
+      middle: 
+          $ref: "#/definitions/Quality"
+      low: 
+          $ref: "#/definitions/Quality"
+      lowest:
+          $ref: "#/definitions/Quality"
+      deleted:
+          $ref: "#/definitions/Quality"
+          
+         
+  StorageRange:
+    type: 'object'
+    description: "Once storage range"
+    properties:
+      delay: 
+        type: 'integer'
+        description: 'Formatting delay (hours)'
+      qualityId:
+        type: 'integer'
+        description: 'Movie quality for this task'
+    
+          
+  StoragePolicy: 
+    type: array
+    description: "Storage policy - array of StorageRanges. DELETE TIME REQUIRED!"
+    items:
+      $ref: "#/definitions/StorageRange"
+        
+  CameraSize:
+    type: 'object'
+    description: "Summary movies size for once camera"
+    properties:
+      cameraId:
+        type: 'integer'
+      moviesSize:
+        type: 'integer'
+  
+        
+  MoviesStat:
+    type: 'object'
+    description: "statistic about using hdd"
+    properties:
+      totalMoviesSize: 
+        type: 'integer'
+        description: 'summary movies size for all cameras'
+      cameraSizes:
+        type: 'array'
+        description: 'summary size of movies for every camera'
+        items: 
+          $ref: "#/definitions/CameraSize"
+      hddFree:
+        type: 'integer'
+      hddCapacity:
+        type: 'integer'
+          
+          
+  Prediction: 
+    type: 'object'
+    description: "prediciton of memory filll rate"
+    properties:
+      isMemoryFinal: 
+        type: 'boolean'
+        description: "memory will be full sometimes"
+      averageFillRate: 
+        type: 'integer'
+        description: "average speed of hdd filling KB per day"
+      hddOutDay: 
+        type: 'integer'
+        description: "day when memory will be ran out"
+      memoryUsage: 
+        type: 'array'
+        description: "index - day of prediction. Value - \
+            amount of memory in KB which will be recorded at this day"
+        items: 
+          type: 'integer'
+       
+       
+  CameraStat:
+    type: 'object'
+    description: "Intake statistics for once camera"
+    properties:
+      cameraId: 
+        type: 'integer'
+      averageIntake: 
+        type: 'integer'
+        description: "Average memory intake per day (KB)"
+      totalIntakePart: 
+        type: 'integer'
+        description: 'Part of total memory intake in percents'
+        
+        
+  IntakeStats: 
+    type: 'object'
+    properties:
+      totalIntake: 
+        type: 'integer'
+        description: 'Average memory intake for all cameras (KB)'
+      camerasIntake: 
+        type: 'array'
+        items: 
+          $ref: '#/definitions/CameraStat'
+          
+  
+  PredictionBody:        
+    type: 'array'
+    items: 
+      $ref: '#/definitions/PredictionReqCamera'
+  
+  PredictionReqCamera:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      movieQualityId:
+        description: "Id of start movie quality from qualities service"
+        type: "integer"
+      storagePolicy:
+          $ref: "#/definitions/StoragePolicy"
+      
+           
+        
+externalDocs:
+  description: "Online swagger viewer"
+  url: "https://editor.swagger.io/"
+  
