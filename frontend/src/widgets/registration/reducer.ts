@@ -9,7 +9,7 @@ export type RegistrationState = {
 }
 
 
-const initialState : RegistrationState = {
+export const initialState : RegistrationState = {
     isVisible: false,    
 }
 
