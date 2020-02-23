@@ -5,7 +5,7 @@ import { Card, Col } from 'react-bootstrap'
 import Styles from './styles.module.css'
 
 
-type PublicCartProps = {
+export type PublicCartProps = {
   title: string, 
   text: string, 
   key: number
