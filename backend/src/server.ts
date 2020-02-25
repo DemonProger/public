@@ -2,7 +2,6 @@
 
 import * as bodyParser from 'body-parser'
 import { Server } from '@overnightjs/core'
-
 import logs from './thirdparty/logs'
 
 
