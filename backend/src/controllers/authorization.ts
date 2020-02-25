@@ -24,13 +24,14 @@ class AuthController {
             resp.status(200).end("User added")
         }
         catch (e) {
-            logs.error(e.stack)
+            this.handleException(e, resp)
         }
     }
 
 
     private handleException(exception: any, resp: any) {
         resp.status(500).end(exception.stack)
+        logs.error(exception.stack)
     }
 }
 

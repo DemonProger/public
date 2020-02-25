@@ -1,5 +1,12 @@
 
 
+class Queries {
+    public static addUser(u: User): string {
+        return ""
+    }
+}
+
+
 export type User = {
     login: string, 
     password: string, 
