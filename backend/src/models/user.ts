@@ -17,7 +17,7 @@ class UserModel {
 
 
     public async isUserRegistered(u: User): Promise<boolean> {
-        return null
+        return false
     }
 
 

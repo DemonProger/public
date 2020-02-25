@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build-service": "tsc -p ./tsconfig-service.json",
-    "run-service": "node ./build/index.js",
-    "build-tests": "tsc -p ./tsconfig-tests.json",
-    "run-tests": "node ./build/tests/tests.js"
+    "build": "tsc -p ./tsconfig-service.json",
+    "run": "node ./build/index.js", 
+    "test": "jest"
   },
   "author": "D.A.T.",
   "license": "ISC",

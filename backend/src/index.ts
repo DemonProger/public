@@ -9,7 +9,7 @@ dotenv.config()
 const start = async () => {
     try {
         const server = new BackServer()
-        server.start(parseInt(process.env.PORT) | 3000)
+        server.start(parseInt(process.env.PORT || "3000"))
     }
     catch (e) {
         logs.error(e.message + " " +  e.stack)
