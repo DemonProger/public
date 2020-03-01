@@ -1,20 +1,29 @@
-
-
-
- 
 import * as React from "react"
 import { connect } from 'react-redux'
 import { RegistrationState } from './reducer'
-import { Alert } from 'react-bootstrap'
+import RegistrationWindow, { RegistrationWindowProps } from '../templates/authorization/registration-modal'
+import registrationActions, { TYPES } from './actions'
 
+export const Registraion = (props: any) => {
 
-export const Registraion = (props: RegistrationState) => {
+    const onCloseClick = () => {
+      props.onCloseClick()
+    }
+
+    const templateProps: RegistrationWindowProps = {
+      onCloseClick: onCloseClick, 
+      username: props.username, 
+      email: props.email, 
+      password: props.password
+    }
+
     return (
         <>
         {
             props.isVisible
             &&
-            <Alert variant="danger" >hi! I am modal"</Alert>
+            // <RegistrationWindow onCloseClick={onCloseClick} username={props.username} email={props.email}  password={props.password}/>
+            <RegistrationWindow {...templateProps}/>
         }         
         </>   
     )
@@ -23,13 +32,18 @@ export const Registraion = (props: RegistrationState) => {
 
 const mapStateToProps = (state: any) => {  
   return { 
-      ...state.registration     
+      ...state.registrationReducer     
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-     
+    onCloseClick: () => { 
+      // dispatch(registrationActions.closeClickAction()) 
+      dispatch({ 
+        type: TYPES.TYPE_CLOSE_CLICK
+      })
+    }
   }
 }
 

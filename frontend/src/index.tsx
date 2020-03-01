@@ -11,12 +11,12 @@ import thunkMiddleware from "redux-thunk"
 import { combineReducers } from "redux"
 import { Provider } from 'react-redux'
 import publicsReducer from './widgets/publics/reducer'
-import registration from './widgets/registration/reducer'
+import registrationReducer from './widgets/registration/reducer'
 
 
 const rootReducer = combineReducers({
     publicsReducer, 
-    registration
+    registrationReducer
 })
 
 

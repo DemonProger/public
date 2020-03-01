@@ -16,7 +16,7 @@ export type HeaderProps = {
 }
 
 
-export const Header = (props: HeaderProps) => {
+const Header = (props: HeaderProps) => {
   return (
     <Navbar bg="light" variant="light">
         <Navbar.Brand className={Styles.BrandWrapper}>
