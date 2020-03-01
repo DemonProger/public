@@ -16,7 +16,14 @@ export type User = {
 }
 
 
-class UserModel {
+export interface IUserModel {
+    isUserRegistered(u: User): Promise<boolean>, 
+    registerUser(u: User): Promise<void>,
+
+}
+
+
+export class UserModel {
 
     public constructor() {
 
@@ -28,7 +35,7 @@ class UserModel {
     }
 
 
-    public async registerUser(u: User) {
+    public async registerUser(u: User): Promise<void> {
 
     }
 

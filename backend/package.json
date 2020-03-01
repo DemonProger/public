@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc -p ./tsconfig-service.json",
-    "run": "node ./build/index.js", 
-    "test": "jest"
+    "build": "tsc -p ./tsconfig.json",
+    "run": "node ./build/index.js",
+    "test": "jest",
+    "migrate-up": "node-pg-migrate up"
   },
   "author": "D.A.T.",
   "license": "ISC",
@@ -24,8 +25,10 @@
     "fluent-ffmpeg": "^2.1.2",
     "fs": "0.0.1-security",
     "hdd-space": "^1.2.0",
+    "node-pg-migrate": "^4.2.2",
     "pg": "^7.14.0",
     "tsc": "^1.20150623.0",
+    "typeorm": "^0.2.24",
     "typescript": "^3.7.5"
   },
   "devDependencies": {

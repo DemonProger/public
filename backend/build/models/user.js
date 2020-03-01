@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
+class Queries {
+    static addUser(u) {
+        return "";
+    }
+}
 class UserModel {
     constructor() {
     }
@@ -27,5 +32,6 @@ class UserModel {
         return data;
     }
 }
+exports.UserModel = UserModel;
 exports.default = UserModel;
 //# sourceMappingURL=user.js.map

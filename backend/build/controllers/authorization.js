@@ -19,12 +19,13 @@ class AuthController {
                 resp.status(200).end("User added");
             }
             catch (e) {
-                logs_1.default.error(e.stack);
+                this.handleException(e, resp);
             }
         });
     }
     handleException(exception, resp) {
         resp.status(500).end(exception.stack);
+        logs_1.default.error(exception.stack);
     }
 }
 exports.default = AuthController;

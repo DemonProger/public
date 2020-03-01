@@ -9,6 +9,13 @@
             "group": "build",    
             "label": "build",        
             "problemMatcher": []
+        }, 
+        {
+            "type": "npm",
+            "script": "build",
+            "group": "build",    
+            "label": "build",        
+            "problemMatcher": []
         }
     ]
 }

@@ -10,7 +10,7 @@
       "emitDecoratorMetadata": true,
       "moduleResolution": "node",
       "importHelpers": true,
-      "sourceMap": true,
+      "sourceMap": true,      
       "types": [
         "node"
       ],
@@ -23,5 +23,6 @@
     ], 
     "files": [
       "./src/index.ts"      
-    ]
+    ], 
+    "exclude" : ["src/**/*.test.ts"]
   }
