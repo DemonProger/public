@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const bodyParser = require("body-parser");
+const tslib_1 = require("tslib");
+const bodyParser = tslib_1.__importStar(require("body-parser"));
 const core_1 = require("@overnightjs/core");
-const logs_1 = require("./thirdparty/logs");
+const logs_1 = tslib_1.__importDefault(require("./thirdparty/logs"));
 class BackServer extends core_1.Server {
     constructor() {
         super(true);

@@ -1,6 +1,6 @@
 
 import logs from "../thirdparty/logs"
-import UserModel, { User } from '../models/user'
+import { UserModel, User } from '../models/user'
 
 
 class AuthController {

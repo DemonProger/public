@@ -1,25 +1,33 @@
 
 
-class Queries {
-    public static addUser(u: User): string {
-        return ""
-    }
-}
+import { PrimaryKey, Property, Entity, UuidEntity } from 'mikro-orm'
 
+@Entity()
+export class User implements UuidEntity<User> {
 
-export type User = {
-    login: string, 
-    password: string, 
-    city: string, 
-    age: number, 
-    email: string 
+    @PrimaryKey() 
+    uuid!: string
+
+    @Property()
+    login: string
+
+    @Property()
+    password: string 
+
+    @Property()
+    city: string 
+
+    @Property()
+    age: number 
+
+    @Property()
+    mail: string
 }
 
 
 export interface IUserModel {
     isUserRegistered(u: User): Promise<boolean>, 
     registerUser(u: User): Promise<void>,
-
 }
 
 
@@ -56,6 +64,3 @@ export class UserModel {
         return <User> data
     }
 }
-
-
-export default UserModel

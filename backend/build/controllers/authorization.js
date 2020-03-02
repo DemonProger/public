@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const logs_1 = require("../thirdparty/logs");
+const logs_1 = tslib_1.__importDefault(require("../thirdparty/logs"));
 const user_1 = require("../models/user");
 class AuthController {
     constructor(model) {
@@ -11,7 +11,7 @@ class AuthController {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
                 const body = req.body;
-                const user = user_1.default.parseUser(body);
+                const user = user_1.UserModel.parseUser(body);
                 if (this.model.isUserRegistered(user)) {
                     resp.status(406).end("User is registered");
                 }

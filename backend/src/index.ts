@@ -1,9 +1,9 @@
 
 import logs from "./thirdparty/logs"
 import BackServer from './server'
+import { MikroORM } from 'mikro-orm'
+import { User } from './models/user'
 
-// import MikroORM from 'mikro-orm'
-const MikroORM = require('mikro-orm')
 
 import * as dotenv from "dotenv"
 dotenv.config()
@@ -15,11 +15,12 @@ const start = async () => {
         server.start(parseInt(process.env.PORT || "3000"))
 
         const orm = await MikroORM.init({
-            entities: [],
-            dbName: process.env.DB_NAME,
+            entities: [User],
+            dbName: process.env.DB_NAME || "db name is not setted in .env file",           
+            // entitiesDirsTs: ['./src/models'],
             clientUrl: 'postgresql://localhost:54332',
             type: 'postgresql',
-            autoFlush: false,
+            autoFlush: false
           })
           
           console.log(orm.em) // access EntityManager via `em` property

@@ -11,6 +11,7 @@
       "emitDecoratorMetadata": true,
       "strictPropertyInitialization": false,
       "moduleResolution": "node",
+      "esModuleInterop": true,
       "importHelpers": true,
       "sourceMap": true,      
       "types": [

@@ -1,11 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-class Queries {
-    static addUser(u) {
-        return "";
-    }
-}
+const mikro_orm_1 = require("mikro-orm");
+let User = class User {
+};
+tslib_1.__decorate([
+    mikro_orm_1.PrimaryKey(),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "uuid", void 0);
+tslib_1.__decorate([
+    mikro_orm_1.Property(),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "login", void 0);
+tslib_1.__decorate([
+    mikro_orm_1.Property(),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "password", void 0);
+tslib_1.__decorate([
+    mikro_orm_1.Property(),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "city", void 0);
+tslib_1.__decorate([
+    mikro_orm_1.Property(),
+    tslib_1.__metadata("design:type", Number)
+], User.prototype, "age", void 0);
+tslib_1.__decorate([
+    mikro_orm_1.Property(),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "mail", void 0);
+User = tslib_1.__decorate([
+    mikro_orm_1.Entity()
+], User);
+exports.User = User;
 class UserModel {
     constructor() {
     }
@@ -33,5 +59,4 @@ class UserModel {
     }
 }
 exports.UserModel = UserModel;
-exports.default = UserModel;
 //# sourceMappingURL=user.js.map

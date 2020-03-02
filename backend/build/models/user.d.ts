@@ -1,10 +1,12 @@
-export declare type User = {
+import { UuidEntity } from 'mikro-orm';
+export declare class User implements UuidEntity<User> {
+    uuid: string;
     login: string;
     password: string;
     city: string;
     age: number;
-    email: string;
-};
+    mail: string;
+}
 export interface IUserModel {
     isUserRegistered(u: User): Promise<boolean>;
     registerUser(u: User): Promise<void>;
@@ -15,4 +17,3 @@ export declare class UserModel {
     registerUser(u: User): Promise<void>;
     static parseUser(data: any): User;
 }
-export default UserModel;
