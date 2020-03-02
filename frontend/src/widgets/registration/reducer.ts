@@ -1,7 +1,8 @@
 
 
 import { Reducer } from 'redux'
-import { TYPES } from './actions'
+import {TYPES} from './actions'
+import {TYPE} from '../header/actions-header'
 
 export type RegistrationState = {
     isVisible?: boolean,
@@ -9,7 +10,6 @@ export type RegistrationState = {
     email: string,
     password: string
 }
-
 
 export const initialState : RegistrationState = {
     isVisible: false, 
@@ -27,9 +27,15 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
             ...state, 
             isVisible: false
         }
+    }else if (action.type===TYPE.TYPE_CLICK_ENTRANCE) {
+        return {
+            ...state, 
+            isVisible: true
+        }
+
     }
 
-    
+     
     
     return state
 }
