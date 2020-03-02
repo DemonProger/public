@@ -27,7 +27,10 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
             ...state, 
             isVisible: false
         }
-    }else if (action.type===TYPE.TYPE_CLICK_ENTRANCE) {
+    }
+    
+    // FIXED
+    if (action.type===TYPE.TYPE_CLICK_ENTRANCE) {
         return {
             ...state, 
             isVisible: true

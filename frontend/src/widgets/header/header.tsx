@@ -43,7 +43,9 @@ let mapStateToProps=(state: any)=>{
 //это метод,функция, которая возвращает объект-ключ объекта-имя моего метода, значение-сама наша функция
 let mapDispatchToProps=(dispatch: any)=>{
    return {
-    onEntranceClick: ()=> dispatch(TYPE.TYPE_CLICK_ENTRANCE)
+    onEntranceClick: ()=> dispatch({
+        type: TYPE.TYPE_CLICK_ENTRANCE // FIXED
+    })
    }
 }
 
