@@ -71,10 +71,10 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className={Styles.ButtonRegister} onClick={() => { }}>
+                <Button variant="outline-info" onClick={() => { }}>
                     Регистрация
                 </Button>
-                <Button className={Styles.ButtonClose} onClick={props.onCloseClick}>
+                <Button variant="outline-info" onClick={props.onCloseClick}>
                     Закрыть
                 </Button>
             </Modal.Footer>
