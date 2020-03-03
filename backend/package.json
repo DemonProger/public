@@ -7,7 +7,7 @@
     "build": "tsc -p ./tsconfig.json",
     "run": "node ./build/index.js",
     "test": "jest",
-    "migrate-up": "node-pg-migrate up"
+    "migrate-up": "node-pg-migrate up"    
   },
   "author": "D.A.T.",
   "license": "ISC",

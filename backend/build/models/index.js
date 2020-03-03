@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-tslib_1.__exportStar(require("./user"), exports);
+var user_1 = require("./user");
+exports.UserModel = user_1.UserModel;
 //# sourceMappingURL=index.js.map

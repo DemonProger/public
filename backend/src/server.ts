@@ -22,7 +22,7 @@ class BackServer extends Server {
 
     private setupControllers() {
         // movies
-       // this.app.put('/movie/add', MoviesController.movieAdd.bind(MoviesController))       
+        // this.app.put('/movie/add', MoviesController.movieAdd.bind(MoviesController))       
     }
 }
 
