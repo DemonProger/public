@@ -10,11 +10,10 @@ const Header=(props: any)=>{
 
 
     const onSomeOptionClick=(optionText: string)=>{
-         
+
          if (optionText==='вход'){
             props.onEntranceClick()
          }
-         
     }
     
     const headerTemplateProps: HeaderProps = {
@@ -35,7 +34,7 @@ const Header=(props: any)=>{
 //чтение состояния
 let mapStateToProps=(state: any)=>{
     return{
-         
+               
     } 
 }
 
@@ -45,7 +44,7 @@ let mapDispatchToProps=(dispatch: any)=>{
    return {
     onEntranceClick: ()=> dispatch({
         type: TYPE.TYPE_CLICK_ENTRANCE // FIXED
-    })
+    }) 
    }
 }
 

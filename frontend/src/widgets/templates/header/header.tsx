@@ -40,7 +40,7 @@ const Header = (props: HeaderProps) => {
       </Nav>
       {
         props.isSearchEnabled
-          &&
+          && 
           <Form inline className="d-none d-sm-block">
             <FormControl type="text" placeholder="Поиск" className="mr-sm-2" />
             <Button variant="outline-info">Найти</Button>

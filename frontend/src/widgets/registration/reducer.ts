@@ -12,7 +12,7 @@ export type RegistrationState = {
 }
 
 export const initialState : RegistrationState = {
-    isVisible: false, 
+    isVisible: true, 
     username: '',
     email: '',
     password: ''   

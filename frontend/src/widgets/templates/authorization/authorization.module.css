@@ -1,12 +1,15 @@
 .ModalHeader{
-   background-color: #40E0D0;
+   background-color: #00BFFF;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .ButtonRegister{
-   background-color: #40E0D0;
-   color: white;
+   background-color: #00BFFF;
+   color: black;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .ButtonClose{
-   background-color: #40E0D0;
-   color: white;
+   background-color: #00BFFF;
+   color: black;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
