@@ -23,6 +23,16 @@ export const FIELD_IDS = {
 }
 
 const RegistrationWindow = (props: RegistrationWindowProps) => {
+
+    const onChange = (fieldId: string, value: string) => {
+        // props.onChanged(fieldId, value)
+        console.log(`changed ${fieldId} to ${value}`)
+    }
+
+    const createChangeHandler = (fieldId: string) => (event: any) => {
+        onChange(fieldId, event.target.value)
+    }
+
     return (
         <Modal show={true} onHide={props.onCloseClick}
             aria-labelledby="contained-modal-title-vcenter"
@@ -42,7 +52,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control type="text" placeholder="Имя пользователя" />
+                            <Form.Control  onChange={createChangeHandler(FIELD_IDS.name)} type="text" placeholder="Имя пользователя" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
@@ -53,7 +63,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={emailIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control type="email" placeholder="Электронный адрес" />
+                            <Form.Control  onChange={createChangeHandler(FIELD_IDS.email)} type="email" placeholder="Электронный адрес" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
@@ -64,7 +74,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={loginIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control type="password" placeholder="Пароль" />
+                            <Form.Control onChange={createChangeHandler(FIELD_IDS.password)} type="password" placeholder="Пароль" />
                         </InputGroup>
                     </Form.Group>
                 </Form>
