@@ -2,7 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const mikro_orm_1 = require("mikro-orm");
+const uuid_1 = require("uuid");
 let User = class User {
+    constructor(login, password, city, age, mail) {
+        this.uuid = uuid_1.v4();
+        this.login = login;
+        this.password = password;
+        this.city = city;
+        this.age = age;
+        this.mail = mail;
+    }
 };
 tslib_1.__decorate([
     mikro_orm_1.PrimaryKey(),
@@ -29,7 +38,8 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "mail", void 0);
 User = tslib_1.__decorate([
-    mikro_orm_1.Entity()
+    mikro_orm_1.Entity(),
+    tslib_1.__metadata("design:paramtypes", [String, String, String, Number, String])
 ], User);
 exports.User = User;
 class UserModel {

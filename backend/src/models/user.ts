@@ -1,27 +1,36 @@
 
 
 import { PrimaryKey, Property, Entity, UuidEntity } from 'mikro-orm'
+import { v4 } from 'uuid'
 
 @Entity()
 export class User implements UuidEntity<User> {
 
     @PrimaryKey() 
-    uuid!: string
+    uuid: string = v4()
 
     @Property()
-    login: string
+    login!: string
 
     @Property()
-    password: string 
+    password!: string 
 
     @Property()
-    city: string 
+    city?: string 
 
     @Property()
-    age: number 
+    age?: number 
 
     @Property()
-    mail: string
+    mail!: string
+
+    public constructor(login: string, password: string, city: string, age: number, mail: string) {
+        this.login = login
+        this.password = password 
+        this.city = city 
+        this.age = age 
+        this.mail = mail
+    }
 }
 
 

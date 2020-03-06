@@ -23,6 +23,6 @@ exports.default = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const dropAndCreateDump = yield generator.generate();
     console.log(dropAndCreateDump);
     yield generator.updateSchema();
-    yield orm.close(true);
+    return orm;
 });
 //# sourceMappingURL=create-schema.js.map
