@@ -11,6 +11,7 @@ export const Registraion = (props: any) => {
     }
 
     const templateProps: RegistrationWindowProps = {
+      createChangedHandler: ()=>{},
       onCloseClick: onCloseClick, 
       username: props.username, 
       email: props.email, 

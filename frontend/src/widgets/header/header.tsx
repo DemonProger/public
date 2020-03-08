@@ -39,7 +39,7 @@ let mapStateToProps=(state: any)=>{
 }
 
 //передача события(действие для изменения состояния компонента)
-//это метод,функция, которая возвращает объект-ключ объекта-имя моего метода, значение-сама наша функция
+//это метод,функция, которая возвращает объект-ключ объекта-имя моего метода, значение-сама наша функция 
 let mapDispatchToProps=(dispatch: any)=>{
    return {
     onEntranceClick: ()=> dispatch({
@@ -49,4 +49,4 @@ let mapDispatchToProps=(dispatch: any)=>{
 }
 
 //connect-генерируем компонент
-export default  connect(mapStateToProps, mapDispatchToProps)(Header) 
+export default  connect(mapStateToProps, mapDispatchToProps)(Header)  
