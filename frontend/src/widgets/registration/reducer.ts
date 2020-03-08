@@ -1,8 +1,8 @@
 
-
 import { Reducer } from 'redux'
-import {TYPES} from './actions'
-import {TYPE} from '../header/actions-header'
+import actions, { TYPES } from './actions'
+import { TYPE } from '../header/actions-header'
+import { FIELD_IDS } from './../templates/authorization/registration-modal';
 
 export type RegistrationState = {
     isVisible?: boolean,
@@ -11,37 +11,41 @@ export type RegistrationState = {
     password: string
 }
 
-export const initialState : RegistrationState = {
-    isVisible: true, 
+export const initialState: RegistrationState = {
+    isVisible: false,
     username: '',
     email: '',
-    password: ''   
+    password: ''
 }
 
 
 
 export const reducer: Reducer<any> = (state: RegistrationState = initialState, action: any) => {
-    
-    if (action.type === TYPES.TYPE_CLOSE_CLICK) {        
-        return {
-            ...state, 
+    switch (action.type) {
+        case TYPES.TYPE_CLOSE_CLICK: return {
+            ...state,
             isVisible: false
         }
-    }
-    
-    // FIXED
-    if (action.type===TYPE.TYPE_CLICK_ENTRANCE) {
-        return {
-            ...state, 
+        case TYPE.TYPE_CLICK_ENTRANCE: return {
+            ...state,
             isVisible: true
         }
+        case TYPES.TYPE_ONCHANGE_FIELD_USERNAME: return {
 
-    }
-
-     
+            ...state,
+            username: action.value
+        }
+        case TYPES.TYPE_ONCHANGE_FIELD_EMAIL: return{
+            ...state,
+            email: action.value
+        }
+        case TYPES.TYPE_ONCHANGE_FIELD_PASSWORD: return{
+            ...state,
+            password: action.value
+        }
+        default:
+            return state
+    }   
     
-    return state
 }
-
-
 export default reducer
