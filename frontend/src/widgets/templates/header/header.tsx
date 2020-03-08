@@ -33,7 +33,7 @@ const Header = (props: HeaderProps) => {
         {
           props.isSearchEnabled
           &&
-          <Button variant="info" size="sm" className="d-block d-sm-none">Поиск</Button>
+          <Button variant="outline-info" size="sm" className="d-block d-sm-none">Поиск</Button>
         }
 
 
@@ -43,7 +43,7 @@ const Header = (props: HeaderProps) => {
           && 
           <Form inline className="d-none d-sm-block">
             <FormControl type="text" placeholder="Поиск" className="mr-sm-2" />
-            <Button variant="info">Найти</Button>
+            <Button variant="outline-info">Найти</Button>
         </Form>
         }
   </Navbar>

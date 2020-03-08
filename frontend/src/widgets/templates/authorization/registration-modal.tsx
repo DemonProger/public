@@ -13,7 +13,7 @@ export type RegistrationWindowProps = {
 
     // onRegisterClick(): void, 
     onCloseClick(): void,
-    createChangeHandler(value: string, fieldId: string): void
+    onFieldChanged(value: string, fieldId: string): void
 }
 
 export const FIELD_IDS = {
@@ -31,7 +31,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
             centered
         >
             <Modal.Header className={Styles.ModalHeader}>
-                <Modal.Title>Форма регистрации</Modal.Title>
+                <Modal.Title>Регистрация</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -44,7 +44,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  onChange={(event: any) => props.createChangeHandler(event.target.value, FIELD_IDS.name)} type="text" placeholder="Имя пользователя" />
+                            <Form.Control  onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)} type="text" placeholder="Имя пользователя" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
@@ -55,7 +55,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={emailIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  onChange={(event: any)=>props.createChangeHandler(event.target.value, FIELD_IDS.email)} type="email" placeholder="Электронный адрес" />
+                            <Form.Control  onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.email)} type="email" placeholder="Электронный адрес" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
@@ -66,7 +66,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={loginIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control onChange={(event: any)=>props.createChangeHandler(event.target.value, FIELD_IDS.password)} type="password" placeholder="Пароль" />
+                            <Form.Control onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.password)} type="password" placeholder="Пароль" />
                         </InputGroup>
                     </Form.Group>
                 </Form>
@@ -74,7 +74,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
 
             <Modal.Footer>
                 <Button variant="info" onClick={() => { }}>
-                    Регистрация
+                    Зарегистрироваться
                 </Button>
                 <Button variant="info" onClick={props.onCloseClick}>
                     Закрыть

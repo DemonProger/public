@@ -2,7 +2,7 @@ import * as React from "react"
 import { connect } from 'react-redux'
 import { RegistrationState } from './reducer'
 import RegistrationWindow, { RegistrationWindowProps, FIELD_IDS } from '../templates/authorization/registration-modal'
-import { createChangeUsername, createChangeEmail, createChangePassword, TYPES } from './actions'
+import actions, { TYPES} from './actions'
 
 
 export const Registraion = (props: any) => {
@@ -11,27 +11,27 @@ export const Registraion = (props: any) => {
     props.onCloseClick()
   }
 
-  const createChangeHandler = (value: string, fieldId: string) => {
+  const onFieldChanged = (value: string, fieldId: string) => {
 
     if (FIELD_IDS.name === fieldId) {
 
-      props.createChangeUsername(value)
+      props.onChangeUsername(value)
 
     } else if (FIELD_IDS.email === fieldId) {
 
-      props.createChangeEmail(value)
+      props.onChangeEmail(value)
 
     } else if (FIELD_IDS.password === fieldId) {
 
-      props.createChangePassword(value)
+      props.onChangePassword(value)
     }
   }
   const templateProps: RegistrationWindowProps = {
     username: props.username,
     email: props.email,
     password: props.password,
-    onCloseClick: onCloseClick,
-    createChangeHandler: createChangeHandler
+    onCloseClick,
+    onFieldChanged
   }
 
   return (
@@ -56,31 +56,20 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     onCloseClick: () => {
-      // dispatch(registrationActions.closeClickAction()) 
       dispatch({
         type: TYPES.TYPE_CLOSE_CLICK
       })
 
     },
-    createChangeUsername: (value: string) => {
+    onChangeUsername: (value: string) => {
 
-      dispatch({
-        type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
-        username: value
-      })
+      dispatch(actions.onChangeUsername)
     },
-    createChangeEmail: (value: string) => {
-      dispatch({
-        type: TYPES.TYPE_ONCHANGE_FIELD_EMAIL,
-        email: value
-
-      })
+    onChangeEmail: (value: string) => {
+      dispatch(actions.onChangeEmail)
     },
-    createChangePassword: (value: string) => [
-      dispatch({
-        type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
-        password: value
-      })
+    onChangePassword: (value: string) => [
+      dispatch(actions.onChangePassword)
     ]
 
   }
