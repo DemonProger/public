@@ -12,19 +12,20 @@ export const Registraion = (props: any) => {
   }
 
   const onFieldChanged = (value: string, fieldId: string) => {
-
-    if (FIELD_IDS.name === fieldId) {
-
-      props.onChangeUsername(value)
-
-    } else if (FIELD_IDS.email === fieldId) {
-
-      props.onChangeEmail(value)
-
-    } else if (FIELD_IDS.password === fieldId) {
-
-      props.onChangePassword(value)
+    switch(fieldId){
+      case FIELD_IDS.name:  
+            props.onChangeUsername(value);
+            break;
+      case FIELD_IDS.email: 
+            props.onChangeEmail(value);
+            break; 
+      case FIELD_IDS.password: 
+            props.onChangePassword(value);
+            break;
     }
+    
+
+      
   }
   const templateProps: RegistrationWindowProps = {
     username: props.username,
@@ -55,22 +56,14 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onCloseClick: () => {
-      dispatch({
-        type: TYPES.TYPE_CLOSE_CLICK
-      })
+    onCloseClick: () => dispatch(actions.closeClickAction),
+    
+    onChangeUsername: (value: string) => dispatch(actions.onChangeUsername),
 
-    },
-    onChangeUsername: (value: string) => {
+    onChangeEmail: (value: string) => dispatch(actions.onChangeEmail),
 
-      dispatch(actions.onChangeUsername)
-    },
-    onChangeEmail: (value: string) => {
-      dispatch(actions.onChangeEmail)
-    },
-    onChangePassword: (value: string) => [
-      dispatch(actions.onChangePassword)
-    ]
+    onChangePassword: (value: string) => dispatch(actions.onChangePassword)
+    
 
   }
 
