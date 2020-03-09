@@ -1,15 +1,15 @@
 
 import logs from "../thirdparty/logs"
-import { UserModel, User } from '../models/user'
+import { IUserModel, User, UserModel } from '../models/user'
 
 
-class AuthController {
+class UsersController {
 
-    private model: UserModel
+    private model: IUserModel
 
 
-    public constructor(model: UserModel) {
-        this.model = model
+    public constructor(model: IUserModel) {
+        this.model = model        
     }
 
 
@@ -18,7 +18,8 @@ class AuthController {
             const body = req.body
             const user: User = UserModel.parseUser(body)
             if (this.model.isUserRegistered(user)) {
-                resp.status(406).end("User is registered")
+                resp.status(406).end("Login is already reserved")
+                return
             }
             this.model.registerUser(user)
             resp.status(200).end("User added")
@@ -36,4 +37,4 @@ class AuthController {
 }
 
 
-export default AuthController
+export default UsersController

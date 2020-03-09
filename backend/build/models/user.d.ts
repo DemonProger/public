@@ -12,9 +12,16 @@ export interface IUserModel {
     isUserRegistered(u: User): Promise<boolean>;
     registerUser(u: User): Promise<void>;
 }
-export declare class UserModel {
+export declare class UserModel implements IUserModel {
+    private repo;
+    private orm;
     constructor();
+    init(): Promise<void>;
     isUserRegistered(u: User): Promise<boolean>;
     registerUser(u: User): Promise<void>;
     static parseUser(data: any): User;
+}
+export declare class UserModelWithoutDb implements IUserModel {
+    isUserRegistered(u: User): Promise<boolean>;
+    registerUser(u: User): Promise<void>;
 }

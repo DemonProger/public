@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const mikro_orm_1 = require("mikro-orm");
 const uuid_1 = require("uuid");
+const orm_1 = tslib_1.__importDefault(require("../orm"));
 let User = class User {
     constructor(login, password, city, age, mail) {
         this.uuid = uuid_1.v4();
@@ -44,6 +45,13 @@ User = tslib_1.__decorate([
 exports.User = User;
 class UserModel {
     constructor() {
+        this.init();
+    }
+    init() {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            this.orm = yield orm_1.default.getOrm();
+            this.repo = this.orm.em.getRepository('User');
+        });
     }
     isUserRegistered(u) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
@@ -52,6 +60,8 @@ class UserModel {
     }
     registerUser(u) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            const user = new User(u.login, u.password, u.city || "", u.age || 0, u.mail);
+            yield this.repo.persistAndFlush(user);
         });
     }
     static parseUser(data) {
@@ -69,4 +79,18 @@ class UserModel {
     }
 }
 exports.UserModel = UserModel;
+class UserModelWithoutDb {
+    isUserRegistered(u) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            console.log(`Test user model: isUserRegistered: ${JSON.stringify(u)}`);
+            return false;
+        });
+    }
+    registerUser(u) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            console.log(`Test user model: register user: ${JSON.stringify(u)}`);
+        });
+    }
+}
+exports.UserModelWithoutDb = UserModelWithoutDb;
 //# sourceMappingURL=user.js.map

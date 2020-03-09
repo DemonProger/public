@@ -7,9 +7,13 @@ class Orm {
 
   private orm: MikroORM | null = null
 
-  public async getOrm(): Promise<any> {
+  public async getOrm(): Promise<MikroORM> {
     if (this.orm == null)
       this.orm = await this.createOrm()
+
+    if (this.orm === null)
+      throw Error(`Orm is not created yet`)
+
     return this.orm
   }
 
@@ -38,8 +42,6 @@ class Orm {
     const dropAndCreateDump = await generator.generate()
     console.log(dropAndCreateDump)
     
-    // await generator.dropSchema()
-    // await generator.createSchema()
     await generator.updateSchema()
   
     return orm 

@@ -4,11 +4,16 @@ const tslib_1 = require("tslib");
 const mikro_orm_1 = require("mikro-orm");
 const user_1 = require("./models/user");
 class Orm {
+    constructor() {
+        this.orm = null;
+    }
     getOrm() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const orm = yield this.createOrm();
-            const cap = 0;
-            return null;
+            if (this.orm == null)
+                this.orm = yield this.createOrm();
+            if (this.orm === null)
+                throw Error(`Orm is not created yet`);
+            return this.orm;
         });
     }
     createOrm() {

@@ -1,6 +1,7 @@
+import { MikroORM } from 'mikro-orm';
 declare class Orm {
     private orm;
-    getOrm(): Promise<any>;
+    getOrm(): Promise<MikroORM>;
     private createOrm;
 }
 declare const _default: Orm;
