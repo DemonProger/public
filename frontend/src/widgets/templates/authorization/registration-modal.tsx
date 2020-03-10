@@ -12,9 +12,11 @@ export type RegistrationWindowProps = {
     password: string,
 
     // onRegisterClick(): void, 
+    onRegisterClick(userObject: RegistrationWindowProps): void,
     onCloseClick(): void,
     onFieldChanged(value: string, fieldId: string): void
 }
+
 
 export const FIELD_IDS = {
     name: "name",
@@ -44,7 +46,8 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)} type="text" placeholder="Имя пользователя" />
+                            <Form.Control  onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)} 
+                                           type="text" placeholder="Имя пользователя" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
@@ -55,7 +58,8 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={emailIcon}/>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.email)} type="email" placeholder="Электронный адрес" />
+                            <Form.Control  onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.email)} 
+                                            type="email" placeholder="Электронный адрес" />
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
@@ -66,14 +70,15 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={loginIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.password)} type="password" placeholder="Пароль" />
+                            <Form.Control onChange={(event: any)=>props.onFieldChanged(event.target.value, FIELD_IDS.password)} 
+                                          type="password" placeholder="Пароль" />
                         </InputGroup>
                     </Form.Group>
                 </Form>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="info" onClick={() => { }}>
+                <Button variant="info" onClick={props.onRegisterClick}>
                     Зарегистрироваться
                 </Button>
                 <Button variant="info" onClick={props.onCloseClick}>

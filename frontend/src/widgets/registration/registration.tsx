@@ -1,7 +1,7 @@
 import * as React from "react"
 import { connect } from 'react-redux'
 import { RegistrationState } from './reducer'
-import RegistrationWindow, { RegistrationWindowProps, FIELD_IDS } from '../templates/authorization/registration-modal'
+import RegistrationWindow, { RegistrationWindowProps, FIELD_IDS, User } from '../templates/authorization/registration-modal'
 import actions, { TYPES} from './actions'
 
 
@@ -9,6 +9,16 @@ export const Registraion = (props: any) => {
 
   const onCloseClick = () => {
     props.onCloseClick()
+  }
+  
+  const user: User={
+    username: props.username,
+    email: props.email,
+    password: props.password
+  }
+  
+  const onRegisterClick=()=>{
+    props.registerUser(user)
   }
 
   const onFieldChanged = (value: string, fieldId: string) => {
@@ -32,7 +42,8 @@ export const Registraion = (props: any) => {
     email: props.email,
     password: props.password,
     onCloseClick,
-    onFieldChanged
+    onFieldChanged,
+    onRegisterClick
   }
 
   return (
@@ -55,16 +66,17 @@ const mapStateToProps = (state: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
+  
   return {
     onCloseClick: () => dispatch(actions.closeClickAction),
-    
+
     onChangeUsername: (value: string) => dispatch(actions.onChangeUsername),
 
     onChangeEmail: (value: string) => dispatch(actions.onChangeEmail),
 
-    onChangePassword: (value: string) => dispatch(actions.onChangePassword)
+    onChangePassword: (value: string) => dispatch(actions.onChangePassword),
     
-
+    registerUser: (user: User)=> dispatch(actions.registerUser)
   }
 
 }
