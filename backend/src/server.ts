@@ -9,7 +9,7 @@ const path = require('path')
 
 
 import UsersController from './controllers/users'
-import { UserModel } from './models/user'
+import { UserModel, UserModelWithoutDb } from './models/user'
 
 
 class BackServer extends Server {
@@ -31,7 +31,14 @@ class BackServer extends Server {
     }
 
     private setupControllers() {
-        const usersController = new UsersController(new UserModel())
+
+        let userModel = null
+        if (process.env.USE_DB)
+            userModel = new UserModel()
+        else 
+            userModel = new UserModelWithoutDb()        
+
+        const usersController = new UsersController(userModel)
 
         this.app.post("/user", usersController.registerUser.bind(usersController))     
     }

@@ -22,7 +22,12 @@ class BackServer extends core_1.Server {
         });
     }
     setupControllers() {
-        const usersController = new users_1.default(new user_1.UserModel());
+        let userModel = null;
+        if (process.env.USE_DB)
+            userModel = new user_1.UserModel();
+        else
+            userModel = new user_1.UserModelWithoutDb();
+        const usersController = new users_1.default(userModel);
         this.app.post("/user", usersController.registerUser.bind(usersController));
     }
 }
