@@ -45,6 +45,8 @@ User = tslib_1.__decorate([
 exports.User = User;
 class UserModel {
     constructor() {
+        this.repo = null;
+        this.orm = null;
         this.init();
     }
     init() {
@@ -61,7 +63,8 @@ class UserModel {
     registerUser(u) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const user = new User(u.login, u.password, u.city || "", u.age || 0, u.mail);
-            yield this.repo.persistAndFlush(user);
+            if (this.repo)
+                yield this.repo.persistAndFlush(user);
         });
     }
     static parseUser(data) {
@@ -70,7 +73,7 @@ class UserModel {
             "password",
             "city",
             "age",
-            "email"
+            "mail"
         ];
         for (const prop of requiredProps)
             if (data[prop] === undefined)

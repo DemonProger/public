@@ -15,9 +15,10 @@ class UsersController {
 
     public async registerUser(req: any, resp: any) {
         try {
+            logs.info(`registerUser: ${JSON.stringify(req.body)}`)
             const body = req.body
             const user: User = UserModel.parseUser(body)
-            if (this.model.isUserRegistered(user)) {
+            if (await this.model.isUserRegistered(user)) {
                 resp.status(406).end("Login is already reserved")
                 return
             }

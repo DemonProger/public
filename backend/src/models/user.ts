@@ -10,7 +10,7 @@ import Orm from '../orm'
 export class User implements UuidEntity<User> {
 
     @PrimaryKey() 
-    uuid?: string = v4()
+    uuid: string = v4()
 
     @Property()
     login!: string
@@ -45,8 +45,8 @@ export interface IUserModel {
 
 export class UserModel implements IUserModel {
 
-    private repo: EntityRepository<User>
-    private orm: MikroORM
+    private repo: EntityRepository<User> | null = null
+    private orm: MikroORM | null = null
 
 
     public constructor() {
@@ -67,7 +67,8 @@ export class UserModel implements IUserModel {
 
     public async registerUser(u: User): Promise<void> {
         const user = new User(u.login, u.password, u.city || "", u.age || 0, u.mail)
-        await this.repo.persistAndFlush(user)
+        if (this.repo)
+            await this.repo.persistAndFlush(user)
     }
 
     
@@ -77,7 +78,7 @@ export class UserModel implements IUserModel {
             "password", 
             "city", 
             "age", 
-            "email"
+            "mail"
         ]
 
         for (const prop of requiredProps)
