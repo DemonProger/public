@@ -7,23 +7,21 @@ class UsersController {
 
     private model: IUserModel
 
-
     public constructor(model: IUserModel) {
         this.model = model        
     }
 
-
-    public async registerUser(req: any, resp: any) {
+    public async registerUser(req: any, resp: any): Promise<void> {
         try {
             logs.info(`registerUser: ${JSON.stringify(req.body)}`)
             const body = req.body
             const user: User = UserModel.parseUser(body)
             if (await this.model.isUserRegistered(user)) {
-                resp.status(406).end("Login is already reserved")
-                return
+                resp.status(200).end("User successfully added")
+
             }
-            this.model.registerUser(user)
-            resp.status(200).end("User added")
+            // this.model.registerUser(user)
+            // resp.status(200).end("User added")
         }
         catch (e) {
             this.handleException(e, resp)

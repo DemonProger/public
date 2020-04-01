@@ -1,13 +1,14 @@
 import { User } from "../templates/authorization/registration-modal"
-import sendDataUser from "./api"
-
+import RegistrationApi from "./api"
 
 export const TYPES = {
+
     TYPE_CLOSE_CLICK: "close-clicked",
     TYPE_ONCHANGE_FIELD_USERNAME: "change-user-field",
     TYPE_ONCHANGE_FIELD_EMAIL: "change-email-field",
     TYPE_ONCHANGE_FIELD_PASSWORD: "change-password-field",
-    TYPE_ONREGISTERED_USER: "registered-user"
+    TYPE_ONREGISTERED_USER: "registered-user",
+    TYPE_ONRESERVEDLOGIN: "reserved-login"
 }
 
 
@@ -38,26 +39,35 @@ export const onChangePassword = (value: string) => {
             type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
             password: value
         }
-    }
+}
+
 const onRegesteredUser=()=>{
+
     return{
-        type: TYPES.TYPE_ONREGISTERED_USER
+        type: TYPES.TYPE_ONREGISTERED_USER,
+        serverMessage: "User successfully added"
+    }
+}
+const onReservedLogin=()=>{
+    return{
+        type: TYPES.TYPE_ONRESERVEDLOGIN,
+        serverMessage: "Login is already reserved"
     }
 }
 
-
 export const registerUser =async (user: User) => {
-    return  async (dispatch: any) => {
-        // request 
-        let result = await sendDataUser(user);
 
+    return  async (dispatch: any) => {  
+        let result = await RegistrationApi.sendDataUser(user);
+        
         switch(result.status){
-            case 201: return dispatch(onRegesteredUser);
+            case 200: return  dispatch(onRegesteredUser) 
+            case 406: return  dispatch(onReservedLogin)
 
         }
         // dispatch(onUserRegestered())
         // dispatch(onLoginBuisy())
-        // dispatch(error())
+        // dispatch(error())    
         //201-created пользователь, 
     }   
 }
@@ -68,4 +78,4 @@ export default {
     onChangeUsername,
     closeClickAction, 
     registerUser
-}
+} 

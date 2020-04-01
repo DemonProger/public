@@ -33,7 +33,8 @@ class BackServer extends Server {
     private setupControllers() {
 
         let userModel = null
-        if (process.env.USE_DB)
+        const useDb = (process.env.USE_DB || false) == 'true'
+        if (useDb)
             userModel = new UserModel()
         else 
             userModel = new UserModelWithoutDb()        
