@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class Users {
 
     @Autowired
     private UserRepo userRepo;
 
     @PostMapping(value = "/users/register", consumes = "application/json", produces = "application/json")
-    String userRegister(@Valid @RequestBody User person, HttpServletResponse response) {
+    String registerUser(@Valid @RequestBody User person, HttpServletResponse response) {
         try {
             System.out.println(person.toString());
             userRepo.save(person);
