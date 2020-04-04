@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="speaker-tools" target="1.5" />
+      <module name="speaker-tools" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

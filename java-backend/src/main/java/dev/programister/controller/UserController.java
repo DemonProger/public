@@ -1,7 +1,8 @@
 
-package dev.programister.controllers;
-import dev.programister.instances.User;
-import dev.programister.repos.UserRepo;
+package dev.programister.controller;
+import dev.programister.entity.UserEntity;
+import dev.programister.repository.UserRepo;
+import dev.programister.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,23 +11,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/")
-public class Users {
+public class UserController {
 
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping(value = "/users/register", consumes = "application/json", produces = "application/json")
-    String registerUser(@Valid @RequestBody User person, HttpServletResponse response) {
+    String registerUser(@Valid @RequestBody UserEntity person, HttpServletResponse response) {
         try {
-            System.out.println(person.toString());
             userRepo.save(person);
-            response.sendError(404);
+            List<UserEntity> users = userRepo.findByName(person.getName());
+            System.out.println(users.size());
         }
         catch (Exception exc) {
-            System.out.println(exc);
+            System.out.println("Ooops post mapping error " + exc);
         }
         return  "";
     }

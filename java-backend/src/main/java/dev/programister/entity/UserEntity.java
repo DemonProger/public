@@ -1,13 +1,14 @@
-package dev.programister.instances;
+package dev.programister.entity;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+@EnableAutoConfiguration
+@Table(name = "users")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,7 @@ public class User {
     private String password;
 
 
-    public User() { }
+    public UserEntity() { }
 
     public Integer getId() {
         return id;
