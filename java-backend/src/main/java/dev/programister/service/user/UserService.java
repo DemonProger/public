@@ -1,5 +1,5 @@
 
-package dev.programister.service;
+package dev.programister.service.user;
 import dev.programister.entity.UserEntity;
 
 

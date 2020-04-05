@@ -2,7 +2,7 @@
 package dev.programister.controller;
 import dev.programister.entity.UserEntity;
 import dev.programister.repository.UserRepo;
-import dev.programister.service.UserService;
+import dev.programister.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +28,8 @@ public class UserController {
     String registerUser(@Valid @RequestBody UserEntity person, HttpServletResponse response) {
         try {
             userRepo.save(person);
-            List<UserEntity> users = userRepo.findByName(person.getName());
-            System.out.println(users.size());
+            // List<UserEntity> users = userRepo.findByName(person.getName());
+         //   System.out.println(users.size());
         }
         catch (Exception exc) {
             System.out.println("Ooops post mapping error " + exc);

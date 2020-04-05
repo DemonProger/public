@@ -24,6 +24,11 @@ public class UserEntity {
     @NotNull
     private String password;
 
+    public UserEntity(String name, String email, String password) {
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+    }
 
     public UserEntity() { }
 
