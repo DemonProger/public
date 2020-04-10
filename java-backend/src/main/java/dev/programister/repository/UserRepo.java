@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface UserRepo extends CrudRepository<UserEntity, Long> {
-    Iterable<UserEntity> findByName(String name);
-    long countByName(String name);
+    Iterable<UserEntity> findByLogin(String login);
+    boolean existsByLogin(String login);
 }

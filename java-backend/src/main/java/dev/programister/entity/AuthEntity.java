@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "logged")
 @EnableAutoConfiguration
-@Table(name = "users")
-public class UserEntity {
+public class AuthEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,34 +22,17 @@ public class UserEntity {
 
     @NotNull
     @NotEmpty
-    private String email;
-
-    @NotNull
-    @NotEmpty
     private String password;
 
-    public UserEntity(String login, String email, String password) {
-        setLogin(login);
-        setEmail(email);
-        setPassword(password);
+
+    public AuthEntity() {}
+
+    public String getLogin() {
+        return login;
     }
 
-    public UserEntity() { }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -60,11 +43,11 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public Long getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setId(Long id) {
+        this.id = id;
     }
 }
