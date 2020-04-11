@@ -33,12 +33,12 @@ public class AuthRepoTest {
         entities.add(new AuthEntity("login", "password"));
     }
 
-    @Test
-    public void adding() {
-        for (var authInfo : entities)
-            authRepo.save(authInfo);
-        assertThat(authRepo.count()).isEqualTo(entities.size());
-    }
+//    @Test
+//    public void adding() {
+//        for (var authInfo : entities)
+//            authRepo.save(authInfo);
+//        assertThat(authRepo.count()).isEqualTo(entities.size());
+//    }
 
     @Test
     public void existsByLogin() {

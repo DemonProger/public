@@ -33,22 +33,22 @@ public class UserRepoTest {
         entities.add(new UserEntity("name 2", "email 2", "passwo    rd 2"));
     }
 
-    @Test
-    public void adding() {
-        for (var user : entities)
-            userRepo.save(user);
-        assertThat(userRepo.count()).isEqualTo(entities.size());
-    }
-
-    @Test
-    public void searchByLogin() {
-        assertThat(userRepo.findByLogin("name 1"))
-                .isNotEmpty();
-    }
-
-    @Test
-    public void existsByLogin() {
-        assertThat(userRepo.existsByLogin("name 1"))
-                .isTrue();
-    }
+//    @Test
+//    public void adding() {
+//        for (var user : entities)
+//            userRepo.save(user);
+//        assertThat(userRepo.count()).isEqualTo(entities.size());
+//    }
+//
+//    @Test
+//    public void searchByLogin() {
+//        assertThat(userRepo.findByLogin("name 1"))
+//                .isNotEmpty();
+//    }
+//
+//    @Test
+//    public void existsByLogin() {
+//        assertThat(userRepo.existsByLogin("name 1"))
+//                .isTrue();
+//    }
 }
