@@ -1,0 +1,13 @@
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/controller/UserAuthController.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/repository/AuthRepo.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/Application.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/AppConfig.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/exception/user/UserRegisterException.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/service/user/AuthService.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/exception/user/UserNotExistsException.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/entity/AuthEntity.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/controller/UserRegisterController.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/repository/UserRepo.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/Swagger.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/service/user/UserService.java
+/home/dmitry/Documents/public-project/java-backend/src/main/java/dev/programister/entity/UserEntity.java

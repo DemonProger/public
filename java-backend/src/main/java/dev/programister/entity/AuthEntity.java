@@ -25,6 +25,11 @@ public class AuthEntity {
     private String password;
 
 
+    public AuthEntity(String login, String password) {
+        setLogin(login);
+        setPassword(password);
+    }
+
     public AuthEntity() {}
 
     public String getLogin() {

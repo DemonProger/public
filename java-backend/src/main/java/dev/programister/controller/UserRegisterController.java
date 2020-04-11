@@ -1,9 +1,11 @@
 package dev.programister.controller;
 
+import dev.programister.entity.AuthEntity;
 import dev.programister.entity.UserEntity;
 import dev.programister.exception.user.UserRegisterException;
 import dev.programister.repository.UserRepo;
 import dev.programister.service.user.UserService;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class UserRegisterController {
 
 
     @GetMapping(value = "/user/getAllRegistered", produces = "application/json")
+    @ApiOperation(value = "View a list of registered users", response = UserEntity.class)
     @ApiResponses(value = {@ApiResponse(code = 500, message = "Some internal error")})
     Iterable<UserEntity> getAll(HttpServletResponse response) throws  Exception {
         try {
@@ -39,6 +42,7 @@ public class UserRegisterController {
 
 
     @PostMapping(value = "/user/register", consumes = "application/json", produces = "application/json")
+    @ApiOperation(value = "Register a new user into system")
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "Some user registration error"),
             @ApiResponse(code = 500, message = "Some internal error")})

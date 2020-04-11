@@ -34,7 +34,7 @@ public class UserEntity {
         setPassword(password);
     }
 
-    public UserEntity() { }
+    public UserEntity() {}
 
     public Long getId() {
         return id;

@@ -5,6 +5,7 @@ import dev.programister.entity.UserEntity;
 import dev.programister.exception.user.UserNotExistsException;
 import dev.programister.exception.user.UserRegisterException;
 import dev.programister.service.user.AuthService;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,11 @@ public class UserAuthController {
     AuthService authService;
 
     @PostMapping(value = "/user/login", consumes = "application/json", produces = "application/json")
+    @ApiOperation(value = "Auth a user which is already exists")
     @ApiResponses(value = {
             @ApiResponse(code = 406, message = "User not exists (not registered)"),
             @ApiResponse(code = 500, message = "Some internal error")})
-    void registerUser(@Valid @RequestBody AuthEntity person, HttpServletResponse response) throws Exception {
+    void logInUser(@Valid @RequestBody AuthEntity person, HttpServletResponse response) throws Exception {
         try {
             authService.logIn(person);
         }
@@ -39,6 +41,7 @@ public class UserAuthController {
     }
 
     @GetMapping(value = "/user/getLogged", produces = "application/json")
+    @ApiOperation(value = "View a list of logged in users", response = AuthEntity.class)
     @ApiResponses(value = {@ApiResponse(code = 500, message = "Some internal error")})
     Iterable<AuthEntity> getLogged(HttpServletResponse response)  throws  Exception {
         try {

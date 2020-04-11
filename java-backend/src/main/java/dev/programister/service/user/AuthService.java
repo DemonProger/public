@@ -7,8 +7,10 @@ import dev.programister.repository.AuthRepo;
 import dev.programister.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional
 public class AuthService {
 
     @Autowired
