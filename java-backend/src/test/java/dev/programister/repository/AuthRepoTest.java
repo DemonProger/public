@@ -1,7 +1,6 @@
 package dev.programister.repository;
 
-
-import dev.programister.AppConfig;
+import dev.programister.Application;
 import dev.programister.entity.AuthEntity;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Transactional
-@ContextConfiguration(classes = AppConfig.class, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = Application.class, loader = AnnotationConfigContextLoader.class)
 public class AuthRepoTest {
 
     @Autowired
@@ -33,23 +32,23 @@ public class AuthRepoTest {
         entities.add(new AuthEntity("login", "password"));
     }
 
-//    @Test
-//    public void adding() {
+    @Test
+    public void adding() {
 //        for (var authInfo : entities)
 //            authRepo.save(authInfo);
 //        assertThat(authRepo.count()).isEqualTo(entities.size());
+    }
+
+//    @Test
+//    public void existsByLogin() {
+//        authRepo.save(new AuthEntity("login", "password"));
+//        assertThat(authRepo.existsByLogin("login")).isTrue();
 //    }
 
-    @Test
-    public void existsByLogin() {
-        authRepo.save(new AuthEntity("login", "password"));
-        assertThat(authRepo.existsByLogin("login")).isTrue();
-    }
-
-    @Test
-    public void deleteByLogin() {
-        authRepo.deleteByLogin("login");
-        assertThat(authRepo.count())
-                .isEqualTo(entities.size() - 1);
-    }
+//    @Test
+//    public void deleteByLogin() {
+//        authRepo.deleteByLogin("login");
+//        assertThat(authRepo.count())
+//                .isEqualTo(entities.size() - 1);
+//    }
 }
