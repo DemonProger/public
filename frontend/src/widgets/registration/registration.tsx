@@ -17,29 +17,29 @@ export const Registraion = (props: any) => {
     password: props.password
   
   }
-   
-  const  onRegisterClick=async()=>{
-         props.registerUser(user)
-
-  }
-
-  const onFieldChanged = (value: string, fieldId: string) => {
+  const onFieldChanged = async(value: string, fieldId: string) => {
     
     switch(fieldId){
       case FIELD_IDS.name:  
             props.onChangeUsername(value);
+            console.log(props.username);
             break;
       case FIELD_IDS.email: 
             props.onChangeEmail(value);
-            break; 
+            console.log(props.email);
+            break;
       case FIELD_IDS.password: 
             props.onChangePassword(value);
+            console.log(props.password);
             break;
     }
     
+  }  
+  const  onRegisterClick=()=>{
+         props.registerUser(user)
 
-      
   }
+  
   const templateProps: RegistrationWindowProps = {
 
     username: props.username,
@@ -75,13 +75,13 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     onCloseClick: () => dispatch(actions.closeClickAction),
 
-    onChangeUsername: (value: string) => dispatch(actions.onChangeUsername),
+    onChangeUsername: (value: string) => dispatch(actions.onChangeUsername(value)),
 
-    onChangeEmail: (value: string) => dispatch(actions.onChangeEmail),
+    onChangeEmail: (value: string) => dispatch(actions.onChangeEmail(value)),
 
-    onChangePassword: (value: string) => dispatch(actions.onChangePassword),
+    onChangePassword: (value: string) => dispatch(actions.onChangePassword(value)),
     
-    registerUser: async(user: User)=> dispatch(actions.registerUser)
+    registerUser: (user: User)=> dispatch(actions.registerUser(user))
   }
 
 }

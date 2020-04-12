@@ -13,7 +13,7 @@ export type RegistrationState = {
 }
 
 export const initialState: RegistrationState = {
-
+ 
     isVisible: false,
     username: '',
     email: '',
@@ -42,21 +42,22 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
         case TYPES.TYPE_ONCHANGE_FIELD_USERNAME:
             return {
                 ...state,
-                username: action.value
+                username: action.username,
+                
             }
 
 
         case TYPES.TYPE_ONCHANGE_FIELD_EMAIL: 
             return {
                 ...state,
-                email: action.value
+                email: action.email
             }
 
 
         case TYPES.TYPE_ONCHANGE_FIELD_PASSWORD: 
             return {
                 ...state,
-                password: action.value
+                password: action.password
             }
 
         case TYPES.TYPE_ONREGISTERED_USER: 

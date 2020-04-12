@@ -2,7 +2,6 @@
 import logs from "../thirdparty/logs"
 import { IUserModel, User, UserModel } from '../models/user'
 
-
 class UsersController {
 
     private model: IUserModel

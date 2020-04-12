@@ -19,63 +19,68 @@ export const closeClickAction = () => {
 }
 
 //Action Creator
-export const onChangeUsername=(value: string) => {
-        return {
-            type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
-            username: value,
-        }
+export const onChangeUsername = (value: string) => {
+    return {
+        type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
+        username: value
+    }
 }
 
-export  const onChangeEmail=(value: string) => {
-        return {
-            type: TYPES.TYPE_ONCHANGE_FIELD_EMAIL,
-            email: value
-        }
+export const onChangeEmail = (value: string) => {
+    return {
+        type: TYPES.TYPE_ONCHANGE_FIELD_EMAIL,
+        email: value
     }
+}
 
 
 export const onChangePassword = (value: string) => {
-        return {
-            type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
-            password: value
-        }
-}
-
-const onRegesteredUser=()=>{
-
-    return{
-        type: TYPES.TYPE_ONREGISTERED_USER,
-        serverMessage: "User successfully added"
+    return {
+        type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
+        password: value
     }
 }
-const onReservedLogin=()=>{
-    return{
+
+const onRegesteredUser = () => {
+
+    return {
+        type: TYPES.TYPE_ONREGISTERED_USER,
+        serverMessage: "User successfully added"
+       
+    }
+}
+const onReservedLogin = () => {
+    return {
         type: TYPES.TYPE_ONRESERVEDLOGIN,
         serverMessage: "Login is already reserved"
     }
 }
 
-export const registerUser =async (user: User) => {
+export const registerUser = (user: User) => async (dispatch: any) => {
+    // RegistrationApi.sendDataUser(user).then((resp: Response) => {
+    //     switch(resp.status){
+    //         case 200: return dispatch(onRegesteredUser()) 
+    //         case 406: return dispatch(onReservedLogin())
+    //     }
+    // })
 
-    return  async (dispatch: any) => {  
-        let result = await RegistrationApi.sendDataUser(user);
-        
-        switch(result.status){
-            case 200: return  dispatch(onRegesteredUser) 
-            case 406: return  dispatch(onReservedLogin)
+    const resp = await RegistrationApi.sendDataUser(user)
+    switch (resp.status) {
+        case 200: return dispatch(onRegesteredUser())
+        case 406: return dispatch(onReservedLogin())
+    }
 
-        }
-        // dispatch(onUserRegestered())
-        // dispatch(onLoginBuisy())
-        // dispatch(error())    
-        //201-created пользователь, 
-    }   
+    // // dispatch(onUserRegestered())
+    // dispatch(onLoginBuisy())
+    // dispatch(error())    
+    //201-created пользователь,        
 }
+
 //может быть занят либо сам логин, либо сам email,
 export default {
     onChangeEmail,
     onChangePassword,
     onChangeUsername,
-    closeClickAction, 
+    closeClickAction,
     registerUser
 } 
