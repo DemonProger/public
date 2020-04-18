@@ -1,6 +1,7 @@
 package dev.programister.repository;
 
 import dev.programister.entity.AuthEntity;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 

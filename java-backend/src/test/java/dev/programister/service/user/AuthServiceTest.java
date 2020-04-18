@@ -1,8 +1,10 @@
 package dev.programister.service.user;
 
 import dev.programister.Application;
+import dev.programister.entity.AuthEntity;
 import dev.programister.entity.UserEntity;
 import dev.programister.exception.user.UserRegisterException;
+import dev.programister.repository.AuthRepo;
 import dev.programister.repository.UserRepo;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,33 +28,22 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @ContextConfiguration(classes = Application.class, loader = AnnotationConfigContextLoader.class)
 public class AuthServiceTest {
 
-    ArrayList<UserEntity> entities = new ArrayList<>();
+    ArrayList<AuthEntity> entities = new ArrayList<>();
 
     @Autowired
-    UserService userService;
+    AuthService authService;
 
     // @MockBean
     @Autowired
-    UserRepo userRepo;
+    AuthRepo authRepo;
 
     @Before
     public void prepareData() {
-        entities.add(new UserEntity("name 1", "email 1", "password 1"));
-        entities.add(new UserEntity("name 2", "email 2", "password 2"));
 
-        for (var u : entities)
-            userRepo.save(u);
     }
 
     @Test
     public void isExists() {
-        assertThat(userService.isRegistered(entities.get(0)))
-                .isTrue();
-    }
 
-   @Test
-   public void registration() {
-        assertThatExceptionOfType(UserRegisterException.class)
-                .isThrownBy(() -> userService.register(entities.get(0)));
-   }
+    }
 }

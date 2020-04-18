@@ -1,5 +1,7 @@
 package dev.programister.entity;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -25,6 +27,27 @@ public class AuthEntity {
     public AuthEntity(String login, String password) {
         setLogin(login);
         setPassword(password);
+    }
+
+    public static class Builder {
+        private String login = "noname";
+        private String password = "not setted";
+
+        public Builder() {}
+
+        public Builder login(@NotNull String login) {
+            this.login = login;
+            return this;
+        }
+
+        public Builder password(@NotNull String password) {
+            this.password = password;
+            return this;
+        }
+
+        public AuthEntity build() {
+            return new AuthEntity(login, password);
+        }
     }
 
     public AuthEntity() {}

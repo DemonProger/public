@@ -49,6 +49,7 @@ public class UserRepoTest {
 
     @Test
     public void existsByLogin() {
+        var exists = userRepo.existsByLogin("name 1");
         assertThat(userRepo.existsByLogin("name 1"))
                 .isTrue();
     }

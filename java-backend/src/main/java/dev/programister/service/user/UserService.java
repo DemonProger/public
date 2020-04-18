@@ -16,7 +16,7 @@ public class UserService {
     UserRepo userRepo;
 
     public boolean isRegistered(UserEntity user) {
-        return userRepo.existsById(user.getId());
+        return userRepo.existsByLogin(user.getLogin());
     }
 
     public void register(UserEntity user) throws UserRegisterException {

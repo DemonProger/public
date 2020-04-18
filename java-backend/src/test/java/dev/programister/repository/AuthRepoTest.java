@@ -34,21 +34,21 @@ public class AuthRepoTest {
 
     @Test
     public void adding() {
-//        for (var authInfo : entities)
-//            authRepo.save(authInfo);
-//        assertThat(authRepo.count()).isEqualTo(entities.size());
+        for (var authInfo : entities)
+            authRepo.save(authInfo);
+        assertThat(authRepo.count()).isEqualTo(entities.size());
     }
 
-//    @Test
-//    public void existsByLogin() {
-//        authRepo.save(new AuthEntity("login", "password"));
-//        assertThat(authRepo.existsByLogin("login")).isTrue();
-//    }
+    @Test
+    public void existsByLogin() {
+        authRepo.save(new AuthEntity("login", "password"));
+        assertThat(authRepo.existsByLogin("login")).isTrue();
+    }
 
-//    @Test
-//    public void deleteByLogin() {
-//        authRepo.deleteByLogin("login");
-//        assertThat(authRepo.count())
-//                .isEqualTo(entities.size() - 1);
-//    }
+    @Test
+    public void deleteByLogin() {
+        authRepo.deleteByLogin("login");
+        assertThat(authRepo.count())
+                .isEqualTo(entities.size() - 1);
+    }
 }
