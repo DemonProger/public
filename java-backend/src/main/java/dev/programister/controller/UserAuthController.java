@@ -1,9 +1,7 @@
 package dev.programister.controller;
 
 import dev.programister.entity.AuthEntity;
-import dev.programister.entity.UserEntity;
 import dev.programister.exception.user.UserNotExistsException;
-import dev.programister.exception.user.UserRegisterException;
 import dev.programister.service.user.AuthService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

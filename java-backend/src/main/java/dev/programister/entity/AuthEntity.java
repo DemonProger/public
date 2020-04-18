@@ -1,14 +1,11 @@
 package dev.programister.entity;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "logged")
-@EnableAutoConfiguration
 public class AuthEntity {
 
     @Id

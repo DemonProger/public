@@ -19,7 +19,6 @@ public class AuthService {
     @Autowired
     UserRepo userRepo;
 
-
     public void logIn(AuthEntity user) throws UserNotExistsException {
         if (!userRepo.existsByLogin(user.getLogin()))
             throw new UserNotExistsException("User is not exists");

@@ -31,25 +31,25 @@ public class UserRepoTest {
     @Before
     public void prepareData() {
         entities.add(new UserEntity("name 1", "email 1", "password 1"));
-        entities.add(new UserEntity("name 2", "email 2", "passwo    rd 2"));
+        entities.add(new UserEntity("name 2", "email 2", "password 2"));
     }
 
     @Test
     public void adding() {
-//        for (var user : entities)
-//            userRepo.save(user);
-//        assertThat(userRepo.count()).isEqualTo(entities.size());
+        for (var user : entities)
+            userRepo.save(user);
+        assertThat(userRepo.count()).isEqualTo(entities.size());
     }
 
-//    @Test
-//    public void searchByLogin() {
-//        assertThat(userRepo.findByLogin("name 1"))
-//                .isNotEmpty();
-//    }
+    @Test
+    public void searchByLogin() {
+        assertThat(userRepo.findByLogin("name 1"))
+                .isNotEmpty();
+    }
 
-//    @Test
-//    public void existsByLogin() {
-//        assertThat(userRepo.existsByLogin("name 1"))
-//                .isTrue();
-//    }
+    @Test
+    public void existsByLogin() {
+        assertThat(userRepo.existsByLogin("name 1"))
+                .isTrue();
+    }
 }
