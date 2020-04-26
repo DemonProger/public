@@ -1,4 +1,4 @@
-package dev.programister;
+package dev.programister.swagger;
 
 
 import org.springframework.context.annotation.Bean;
@@ -11,15 +11,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 // http://localhost:8080/swagger-ui.html#/
 
-@Configuration
-@EnableSwagger2
-public class Swagger {
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
-}
+//@Configuration
+//@EnableSwagger2
+//// @Import(BeanValidatorPluginsConfiguration.class)
+//public class Swagger {
+//    @Bean
+//    public Docket api() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select()
+//                .apis(RequestHandlerSelectors.any())
+//                .paths(PathSelectors.any())
+//                .build();
+//    }
+//}

@@ -29,7 +29,7 @@ public class AuthRepoTest {
 
     @Before
     public void before() {
-        entities.add(new AuthEntity("login", "password"));
+        entities.add(new AuthEntity()); // "login", "password"));
     }
 
 //    @Test

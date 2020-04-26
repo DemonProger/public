@@ -1,78 +1,54 @@
 package dev.programister.entity;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+
+@Data
 @Entity
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PrimaryKeyJoinColumn
-    private Long id;
+    @Column(name = "id")
+    @Builder.Default
+    private Long id = Long.valueOf(0);
 
     @NotNull
     @NotEmpty
-    @Size(min = 2, message = "Too short login")
-    @Size(max = 30, message = "Too long login")
+    @Column(name = "login")
     private String login;
 
     @NotNull
     @NotEmpty
-    @Size(min = 2, message = "Too short email")
-    @Size(max = 30, message = "Too long email")
-    @Email(regexp=".@.\\..*", message = "Email should be valid")
+    @Column(name = "email")
     private String email;
 
     @NotNull
     @NotEmpty
-    @Size(min = 8, message = "Too short password")
-    @Size(max = 30, message = "Too long password")
+    @Column(name = "password")
     private String password;
 
-    public UserEntity(String login, String email, String password) {
-        setLogin(login);
-        setEmail(email);
-        setPassword(password);
-    }
+//    @NotNull
+//    @CreatedDate
+//    @Column(name = "created")
+//    private Date created;
 
     public UserEntity() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
+//    public UserEntity(String login, String email, String password) {
+//        setLogin(login);
+//        setEmail(email);
+//        setPassword(password);
+//    }
 }

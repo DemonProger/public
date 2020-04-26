@@ -30,8 +30,8 @@ public class UserRepoTest {
 
     @Before
     public void prepareData() {
-        entities.add(new UserEntity("name 1", "email 1", "password 1"));
-        entities.add(new UserEntity("name 2", "email 2", "password 2"));
+        // entities.add(new UserEntity("name 1", "email 1", "password 1"));
+        // entities.add(new UserEntity("name 2", "email 2", "password 2"));
     }
 
 //    @Test
