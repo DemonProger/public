@@ -1,5 +1,7 @@
-import { User } from "../templates/authorization/registration-modal"
-import RegistrationApi from "./api"
+import { User } from "../templates/authorization/registration-modal";
+import RegistrationApi from "./api";
+import { FIELD_IDS } from './../templates/authorization/registration-modal';
+import FormValidation from "./validation";
 
 export const TYPES = {
 
@@ -19,25 +21,33 @@ export const closeClickAction = () => {
 }
 
 //Action Creator
-export const onChangeUsername = (value: string) => {
+export const onChangeUsername = async (value: string) => {
+
+    let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
-        username: value
+        username: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
 
-export const onChangeEmail = (value: string) => {
+export const onChangeEmail = async(value: string) => {
+
+    let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
+
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_EMAIL,
-        email: value
+        email: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
 
 
-export const onChangePassword = (value: string) => {
+export const onChangePassword = async(value: string) => {
+
+     let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
+
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
-        password: value
+        password: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
 
@@ -46,7 +56,7 @@ const onRegesteredUser = () => {
     return {
         type: TYPES.TYPE_ONREGISTERED_USER,
         serverMessage: "User successfully added"
-       
+
     }
 }
 const onReservedLogin = () => {
@@ -75,6 +85,7 @@ export const registerUser = (user: User) => async (dispatch: any) => {
     // dispatch(error())    
     //201-created пользователь,        
 }
+
 
 //может быть занят либо сам логин, либо сам email,
 export default {

@@ -1,28 +1,26 @@
 
 
-export class RegistrationValidation {
-    public validatePassword(value: string): [boolean, string] {
-        if (value.length > 30) 
-            return [false, "Too long value"]
+class FormValidation{
 
-        if (value.length < 2) 
-            return [false, "Too short value"]
+    isUsernameValid(value: string): Promise<[boolean, string]>{
 
-        return [true, ""]
-    }
-
-
-    public validateLogin(value: string): [boolean, string] {
+        let usernameValue= value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        return Promise.resolve(usernameValue ? [true, ''] :  [false, 'Unacceptable symbols']);
 
     }
+    
+    isEmailValid(value: string): Promise<[boolean, string]>{
+
+        let emailValue=value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        return Promise.resolve(emailValue ? [true, ''] :  [false, 'Unacceptable symbols']);
+    }
+    
+    isPasswordValid(value: string): Promise<[boolean, string]>{
+
+        return Promise.resolve(value.length >= 8 ? [true, '']: [false, 'short password, at least 8 symbols']);
+
+    }
+    
+
 }
-
-
-// .... 
-
-
-const validator = new RegistrationValidation()
-
-const [isValid, errorInfo] = validator.validateLogin("some login")
-if (isValid) 
-    console.logs("success")
+export default new FormValidation();

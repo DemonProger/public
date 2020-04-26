@@ -1,6 +1,8 @@
-import { User} from '../templates/authorization/registration-modal' 
+import { User } from '../templates/authorization/registration-modal'
+import { FIELD_IDS } from './../templates/authorization/registration-modal'
 
-class RegistrationApi{
+
+class RegistrationApi {
     async sendDataUser(userObject: User): Promise<Response> {
 
         let response = await fetch(`${process.env.BACK_URL || "http://localhost:3000"}/user`, {
@@ -9,15 +11,15 @@ class RegistrationApi{
             headers: {
                 'Content-Type': 'application/json',
                 'Origin': 'http://localhost:3000'
-    
+
             },
             body: JSON.stringify(userObject)
-    
-        } ); 
 
-        return response;    
+        });
+
+        return response;
     }
+    
 }
-
 
 export default new RegistrationApi();

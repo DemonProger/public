@@ -7,11 +7,17 @@ import loginIcon from './login.svg'
 import userIcon from './user.svg'
 
 
+export type FieldState = {
+    value: string, 
+    isValid: boolean, 
+    validationInfo: string | null
+}
+
 export type RegistrationWindowProps = {
 
-    username: string,
-    email: string,
-    password: string,
+    username: FieldState,
+    email: FieldState,
+    password: FieldState,
     serverMessage: string,
     onRegisterClick(): void, 
     // onRegisterClick(): void,
@@ -20,7 +26,7 @@ export type RegistrationWindowProps = {
 }
 
 
-export const FIELD_IDS = {
+export const FIELD_IDS = { 
     name: "name",
     email: "email",
     password: "password"
@@ -38,7 +44,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
            props.onRegisterClick();
            alert(props.serverMessage);
     }
-
+     
     return (
         <Modal show={true} onHide={props.onCloseClick}
             aria-labelledby="contained-modal-title-vcenter"
@@ -58,8 +64,9 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control defaultValue={props.username} onChange={(event: any) =>  props.onFieldChanged(event.target.value, FIELD_IDS.name)}
-                                type="text" placeholder="Имя пользователя" />
+                            <Form.Control defaultValue={props.username.value} onChange={(event: any) =>  props.onFieldChanged(event.target.value, FIELD_IDS.name)}
+                                type="text" placeholder="Имя пользователя" isInvalid={props.username.validationInfo!==''} />
+                            <Form.Control.Feedback type='invalid'>{props.username.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">
@@ -70,8 +77,9 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={emailIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  defaultValue={props.email} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.email)}
-                                type="email" placeholder="Электронный адрес" />
+                            <Form.Control  defaultValue={props.email.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.email)}
+                                type="email" placeholder="Электронный адрес"  isInvalid={props.email.validationInfo!==''} />
+                            <Form.Control.Feedback type='invalid'>{props.email.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
@@ -82,8 +90,9 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={loginIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control defaultValue={props.password} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.password)}
-                                 type="password" placeholder="Пароль" />
+                            <Form.Control defaultValue={props.password.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.password)}
+                                 type="password" placeholder="Пароль"  isInvalid={props.password.validationInfo!==''}/>
+                            <Form.Control.Feedback type='invalid'>{props.password.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
                 </Form>

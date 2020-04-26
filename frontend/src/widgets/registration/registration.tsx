@@ -12,13 +12,13 @@ export const Registraion = (props: any) => {
   }
   
   const user: User={
-    username: props.username,
-    email: props.email,
-    password: props.password
+    username: props.username.value,
+    email: props.email.value,
+    password: props.password.value
   
   }
   const onFieldChanged = async(value: string, fieldId: string) => {
-    
+
     switch(fieldId){
       case FIELD_IDS.name:  
             props.onChangeUsername(value);
@@ -39,7 +39,7 @@ export const Registraion = (props: any) => {
          props.registerUser(user)
 
   }
-  
+
   const templateProps: RegistrationWindowProps = {
 
     username: props.username,
@@ -86,4 +86,3 @@ const mapDispatchToProps = (dispatch: any) => {
 
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Registraion)
-

@@ -1,26 +1,35 @@
-
+import  {reducer}  from './../publics/reducer';
 import { Reducer } from 'redux'
 import actions, { TYPES } from './actions'
 import { TYPE } from '../header/actions-header'
 import { FIELD_IDS } from './../templates/authorization/registration-modal';
 
+
+export type FieldState = {
+    value: string, 
+    isValid: boolean, 
+    validationInfo: string | null
+}
+
 export type RegistrationState = {
+
     isVisible?: boolean,
-    username: string,
-    email: string,
-    password: string,
+    username: FieldState,
+    email: FieldState,
+    password: FieldState,
     serverMessage: string
 }
 
-export const initialState: RegistrationState = {
- 
-    isVisible: false,
-    username: '',
-    email: '',
-    password: '',
-    serverMessage: ''
-}
 
+export const initialState: RegistrationState = {
+
+    isVisible: false,
+    username: {value: '', isValid: true, validationInfo: ''},
+    email: {value: '', isValid: true, validationInfo: ''},
+    password: {value: '', isValid: true, validationInfo: ''},
+    serverMessage: ''
+    
+}
 
 export const reducer: Reducer<any> = (state: RegistrationState = initialState, action: any) => {   
     switch (action.type) {
@@ -42,8 +51,7 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
         case TYPES.TYPE_ONCHANGE_FIELD_USERNAME:
             return {
                 ...state,
-                username: action.username,
-                
+                username: action.username
             }
 
 
@@ -51,24 +59,30 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
             return {
                 ...state,
                 email: action.email
+               
             }
-
-
+        
         case TYPES.TYPE_ONCHANGE_FIELD_PASSWORD: 
             return {
+
                 ...state,
                 password: action.password
             }
 
         case TYPES.TYPE_ONREGISTERED_USER: 
+
             return {
                 ...state,
                 serverMessage: action.serverMessage
+               
             }
+
         case TYPES.TYPE_ONRESERVEDLOGIN:{
+
             return{
                 ...state,
                 serverMessage: action.serverMessage
+                
             }
         }
         default:
