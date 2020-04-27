@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserRegisterController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class UserRegisterController {
     private UserService userService;
 
 
-    @GetMapping(value = "/user/getAllRegistered", produces = "application/json")
+    @GetMapping(value = "/getAllRegistered", produces = "application/json")
     @ApiOperation(value = "View a list of registered users", response = UserEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
     Iterable<UserEntity> getAll(HttpServletResponse response) throws  Exception {
@@ -42,7 +42,7 @@ public class UserRegisterController {
     }
 
 
-    @PostMapping(value = "/user/register", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
     @ApiOperation(value = "Register a new user into system")
     @ApiResponses(value = {
             @ApiResponse(code = HttpURLConnection.HTTP_CONFLICT, message = "Some user registration error"),

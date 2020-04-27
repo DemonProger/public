@@ -18,13 +18,13 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth")
 public class UserAuthController {
 
     @Autowired
     AuthService authService;
 
-    @PostMapping(value = "/user/login", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     @ApiOperation(value = "Auth a user which is already exists")
     @ApiResponses(value = {
             @ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "User not exists (not registered)"),
@@ -41,7 +41,7 @@ public class UserAuthController {
         }
     }
 
-    @GetMapping(value = "/user/getLogged", produces = "application/json")
+    @GetMapping(value = "/getAuthentificated", produces = "application/json")
     @ApiOperation(value = "View a list of logged in users", response = AuthEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
     Iterable<AuthEntity> getLogged(HttpServletResponse response)  throws  Exception {
