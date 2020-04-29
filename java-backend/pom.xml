@@ -20,65 +20,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-    <!--        <plugins>-->
-    <!--            <plugin>-->
-    <!--                <groupId>org.apache.maven.plugins</groupId>-->
-    <!--                <artifactId>maven-compiler-plugin</artifactId>-->
-    <!--                <version>3.8.0</version>-->
-    <!--                <configuration>-->
-    <!--&lt;!&ndash;                    <release>11</release>&ndash;&gt;-->
-    <!--                        <source>1.9</source>-->
-    <!--                        <target>1.9</target>-->
-    <!--                </configuration>-->
-    <!--            </plugin>-->
-
-    <!--            <plugin>-->
-    <!--                <groupId>org.springframework.boot</groupId>-->
-    <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-    <!--                <version>2.2.6.RELEASE</version>-->
-    <!--                <configuration>-->
-    <!--                    <fork>true</fork>-->
-    <!--                    <mainClass>dev.programister.Application</mainClass>-->
-    <!--                </configuration>-->
-    <!--                <executions>-->
-    <!--                    <execution>-->
-    <!--                        <goals>-->
-    <!--                            <goal>repackage</goal>-->
-    <!--                        </goals>-->
-    <!--                    </execution>-->
-    <!--                </executions>-->
-    <!--            </plugin>-->
-
-    <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <artifactId>maven-assembly-plugin</artifactId>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <version>3.2.0</version>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    <archive>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <manifest>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <addClasspath>true</addClasspath>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <mainClass>dev.programister.Application</mainClass>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </manifest>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    </archive>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    <descriptorRefs>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <descriptorRef>jar-with-dependencies</descriptorRef>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    </descriptorRefs>&ndash;&gt;-->
-    <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <executions>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <id>assemble-all</id>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <phase>package</phase>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <goals>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <goal>single</goal>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </goals>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
-    <!--&lt;!&ndash;                </executions>&ndash;&gt;-->
-    <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
-    <!--        </plugins>-->
-    <!--    </build>-->
 
 
     <repositories>
