@@ -14,12 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
-// @ComponentScan
 @EnableJpaRepositories
 @EntityScan(basePackages = "dev.programister.entity")
 @ComponentScan(basePackageClasses = {Application.class })
 @EnableSwagger2
-// @Import(BeanValidatorPluginsConfiguration.class)
 @Import({springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration.class})
 public class Application {
     public  static  void main(String[] args) {

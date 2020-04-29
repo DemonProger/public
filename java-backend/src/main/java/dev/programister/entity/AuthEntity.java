@@ -1,8 +1,10 @@
 package dev.programister.entity;
 
+import dev.programister.dto.AuthDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthEntity {
 
     @Id
@@ -33,5 +36,10 @@ public class AuthEntity {
     @Column(name = "password")
     private String password;
 
-    public AuthEntity() {}
+    public static AuthEntity fromDto(AuthDto data) {
+        return new AuthEntity().builder()
+                .login(data.getLogin())
+                .password(data.getPassword())
+                .build();
+    }
 }

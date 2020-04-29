@@ -18,22 +18,21 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/registration")
 public class UserRegisterController {
-
-    @Autowired
-    private UserRepo userRepo;
 
     @Autowired
     private UserService userService;
 
 
-    @GetMapping(value = "/getAllRegistered", produces = "application/json")
+    @GetMapping(value = "/getAll", produces = "application/json")
     @ApiOperation(value = "View a list of registered users", response = UserEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
-    Iterable<UserEntity> getAll(HttpServletResponse response) throws  Exception {
+    Iterable<UserDto> getAll(HttpServletResponse response) throws  Exception {
         try {
-            return userRepo.findAll();
+            var res = new ArrayList<UserDto>();
+            userService.getRegistered().forEach(e -> res.add(UserDto.fromEntity(e)));
+            return res;
         }
         catch (Exception exc) {
             response.sendError(HttpURLConnection.HTTP_INTERNAL_ERROR, "Internal server error " + exc.getMessage());
@@ -47,12 +46,12 @@ public class UserRegisterController {
     @ApiResponses(value = {
             @ApiResponse(code = HttpURLConnection.HTTP_CONFLICT, message = "Some user registration error"),
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
-    void registerUser(@Valid @RequestBody UserDto person, HttpServletResponse response) throws Exception {
+    void registerUser(@Valid @RequestBody UserDto data, HttpServletResponse response) throws Exception {
         try {
-            userService.register(person.toEntity());
-        }
-        catch (UserRegisterException exc) {
-            response.sendError(HttpURLConnection.HTTP_CONFLICT, "User registration error " + exc.getMessage());
+            var user = UserEntity.fromDto(data);
+            if (userService.isRegistered(user))
+                response.sendError(HttpURLConnection.HTTP_CONFLICT, "User already exists");
+            userService.register(user);
         }
         catch (Exception exc) {
             response.sendError(HttpURLConnection.HTTP_INTERNAL_ERROR, "Internal server error " + exc.getMessage());

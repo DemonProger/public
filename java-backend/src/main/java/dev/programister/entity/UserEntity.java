@@ -1,8 +1,10 @@
 package dev.programister.entity;
 
+import dev.programister.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
@@ -44,11 +47,12 @@ public class UserEntity {
 //    @Column(name = "created")
 //    private Date created;
 
-    public UserEntity() {}
 
-//    public UserEntity(String login, String email, String password) {
-//        setLogin(login);
-//        setEmail(email);
-//        setPassword(password);
-//    }
+    public static UserEntity fromDto(UserDto data) {
+        return new UserEntity().builder()
+                .login(data.getLogin())
+                .email(data.getEmail())
+                .password(data.getPassword())
+                .build();
+    }
 }

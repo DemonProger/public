@@ -2,22 +2,25 @@ package dev.programister.dto;
 
 
 import dev.programister.entity.AuthEntity;
+import lombok.AllArgsConstructor;
 import lombok.Value;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 
 
 @Value
+@AllArgsConstructor
 public class AuthDto {
     @NotNull
     @NotEmpty
-    @Size(max = 30, message = "Too long login")
+    @Size(min = 2, max = 30)
     private String login;
 
     @NotNull
     @NotEmpty
-    @Size(max = 30, message = "Too long login")
+    @Size(min = 8, max = 30)
     private String password;
 
 
@@ -26,5 +29,17 @@ public class AuthDto {
                 .login(login)
                 .password(password)
                 .build();
+    }
+
+
+    public static AuthDto fromEntity(AuthEntity entity) {
+        return new AuthDto(entity.getLogin(), entity.getPassword());
+    }
+
+
+    public static Iterable<AuthDto> fromEntities(Iterable<? extends AuthEntity> entities) {
+        var res = new ArrayList<AuthDto>();
+        entities.forEach(entity -> res.add(AuthDto.fromEntity(entity)));
+        return res;
     }
 }
