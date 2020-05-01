@@ -4,7 +4,6 @@ package dev.programister;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -15,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAutoConfiguration
 @Configuration
 @EnableJpaRepositories
-@EntityScan(basePackages = "dev.programister.entity")
 @ComponentScan(basePackageClasses = {Application.class })
 @EnableSwagger2
 @Import({springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration.class})
