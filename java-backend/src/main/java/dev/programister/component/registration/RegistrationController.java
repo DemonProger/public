@@ -23,7 +23,7 @@ public class RegistrationController {
     private RegistrationServiceImpl userService;
 
 
-    @GetMapping(value = "/getAll", produces = "application/json")
+    @GetMapping(value = "/all", produces = "application/json")
     @ApiOperation(value = "View a list of registered users", response = RegistrationEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
     Iterable<RegistrationDto> getAll(HttpServletResponse response) throws  Exception {
@@ -47,7 +47,7 @@ public class RegistrationController {
     void registerUser(@Valid @RequestBody RegistrationDto data, HttpServletResponse response) throws Exception {
         try {
             var user = RegistrationEntity.fromDto(data);
-            if (userService.isRegistered(user))
+            if (userService.isRegistered(user.getLogin()))
                 response.sendError(HttpURLConnection.HTTP_CONFLICT, "User already exists");
             userService.register(user);
         }

@@ -17,22 +17,26 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     RegistrationRepo userRepo;
 
-    public boolean isRegistered(RegistrationEntity user) {
-        return userRepo.existsByLogin(user.getLogin());
-    }
 
+    @Override
     public void register(RegistrationEntity user) {
         userRepo.save(user);
     }
 
+
+    @Override
     public Iterable<? extends RegistrationEntity> getRegistered() {
         return userRepo.findAll();
     }
 
-    public boolean existsByLogin(String login) {
+
+    @Override
+    public boolean isRegistered(String login) {
         return userRepo.existsByLogin(login);
     }
 
+
+    @Override
     public Optional<RegistrationEntity> findByLogin(String login) {
         return userRepo.findByLogin(login);
     }

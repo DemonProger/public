@@ -1,9 +1,7 @@
 package dev.programister.component.registration.test;
 
 import dev.programister.Application;
-import dev.programister.component.authorization.AuthRepo;
-import dev.programister.component.authorization.data.AuthEntity;
-import dev.programister.component.registration.RegistrationService;
+import dev.programister.component.registration.data.RegistrationEntity;
 import dev.programister.component.registration.impl.RegistrationServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,44 +10,66 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Stream;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-@Transactional
-@ContextConfiguration(classes = Application.class, loader = AnnotationConfigContextLoader.class)
+
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest
+//@Transactional
+//@ContextConfiguration(classes = Application.class, loader = AnnotationConfigContextLoader.class)
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 public class RegistrationServiceTest {
 
     @Autowired
     RegistrationServiceImpl registrationService;
 
-    ArrayList<AuthEntity> entities = new ArrayList<>();
+    ArrayList<RegistrationEntity> entities = new ArrayList<>();
+
+    String TEST_LOGIN = "test_login";
+
 
     @Before
     public void before() {
-        entities.add(new AuthEntity()); // "login", "password"));
+        var entity = new RegistrationEntity()
+                .builder()
+                .login(TEST_LOGIN)
+                .password("test password")
+                .email("test email")
+                .build();
+        entities.add(entity);
     }
 
-    //    @Test
-//    public void adding() {
-//        for (var authInfo : entities)
-//            authRepo.save(authInfo);
-//        assertThat(authRepo.count()).isEqualTo(entities.size());
-//    }
-//
+
     @Test
-    public void existsByLogin() {
-//        authRepo.save(new AuthEntity("login", "password"));
-//        assertThat(authRepo.existsByLogin("login")).isTrue();
+    public void registration() {
+        entities.forEach(e -> registrationService.register(e));
+
+        var size = Stream.of(registrationService.getRegistered())
+                .count();
+
+        assertThat(size)
+                .isEqualTo(entities.size());
     }
-//
-//    @Test
-//    public void deleteByLogin() {
-//        authRepo.deleteByLogin("login");
-//        assertThat(authRepo.count())
-//                .isEqualTo(entities.size() - 1);
-//    }
+
+
+    @Test
+    public void isRegistered() {
+        assertThat(registrationService.isRegistered(TEST_LOGIN))
+                .isTrue();
+    }
+
+
+    @Test
+    public void findByLogin() {
+        assertThat(registrationService.findByLogin(TEST_LOGIN))
+                .isNotEqualTo(Optional.empty());
+    }
 }

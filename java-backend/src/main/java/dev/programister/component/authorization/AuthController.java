@@ -39,7 +39,7 @@ public class AuthController {
         try {
             var auth = AuthEntity.fromDto(data);
 
-            if (!userService.existsByLogin(auth.getLogin()))
+            if (!userService.isRegistered(auth.getLogin()))
                 return ResponseEntity.notFound().build();
 
             var registered = userService.findByLogin(auth.getLogin());
@@ -59,7 +59,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping(value = "/getAll", produces = "application/json")
+    @GetMapping(value = "/all", produces = "application/json")
     @ApiOperation(value = "View a list of logged in users", response = AuthEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
     Iterable<AuthDto> getLogged(HttpServletResponse response) throws Exception {
