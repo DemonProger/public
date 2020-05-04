@@ -8,11 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.springframework.transaction.annotation.Transactional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -52,7 +49,7 @@ public class RegistrationServiceTest {
     public void registration() {
         entities.forEach(e -> registrationService.register(e));
 
-        var size = Stream.of(registrationService.getRegistered())
+        var size = Stream.of(registrationService.findAll())
                 .count();
 
         assertThat(size)

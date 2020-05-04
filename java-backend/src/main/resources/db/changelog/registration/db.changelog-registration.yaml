@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-registration.yaml
+  - changeSet:
+      id: 1.2
+      author: postgres
+      changes:
+        - createTable:
+            tableName: registration
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(30)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(30)
+
+      rollback:
+        - delete:
+            tableName: registration

@@ -1,5 +1,6 @@
 package dev.programister.component.registration.data;
 
+import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 

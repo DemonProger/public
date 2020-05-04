@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-registration-role-relation.yaml
+  - changeSet:
+      id: 3.3
+      author: postgres
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: registration_id
+            baseTableName: registration_role
+            constraintName: fk_registration_role_registration
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: registration

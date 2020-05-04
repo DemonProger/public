@@ -5,7 +5,6 @@ import dev.programister.component.authorization.AuthService;
 import dev.programister.component.authorization.data.AuthEntity;
 import dev.programister.component.authorization.AuthRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     AuthRepo authRepo;
 
-    public void authorize(AuthEntity user) {
+    public void saveAuthorized(AuthEntity user) {
         if (!authRepo.existsByLogin(user.getLogin()))
             authRepo.save(user);
     }

@@ -2,11 +2,13 @@ package dev.programister.component.registration;
 
 import dev.programister.component.registration.data.RegistrationDto;
 import dev.programister.component.registration.data.RegistrationEntity;
+import dev.programister.component.registration.data.UnregisterDto;
 import dev.programister.component.registration.impl.RegistrationServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +21,12 @@ import java.util.ArrayList;
 @RequestMapping("/registration")
 public class RegistrationController {
 
+    private final RegistrationServiceImpl registrationService;
+
     @Autowired
-    private RegistrationServiceImpl userService;
+    public RegistrationController(RegistrationServiceImpl registrationService) {
+        this.registrationService = registrationService;
+    }
 
 
     @GetMapping(value = "/all", produces = "application/json")
@@ -29,10 +35,11 @@ public class RegistrationController {
     Iterable<RegistrationDto> getAll(HttpServletResponse response) throws  Exception {
         try {
             var res = new ArrayList<RegistrationDto>();
-            userService.getRegistered().forEach(e -> res.add(RegistrationDto.fromEntity(e)));
+            registrationService.findAll().forEach(e -> res.add(RegistrationDto.fromEntity(e)));
             return res;
         }
         catch (Exception exc) {
+            System.out.println(exc);
             response.sendError(HttpURLConnection.HTTP_INTERNAL_ERROR, "Internal server error " + exc.getMessage());
         }
         return new ArrayList<>();
@@ -44,15 +51,31 @@ public class RegistrationController {
     @ApiResponses(value = {
             @ApiResponse(code = HttpURLConnection.HTTP_CONFLICT, message = "Some user registration error"),
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})
-    void registerUser(@Valid @RequestBody RegistrationDto data, HttpServletResponse response) throws Exception {
+    void register(@Valid @RequestBody RegistrationDto data, HttpServletResponse response) throws Exception {
         try {
             var user = RegistrationEntity.fromDto(data);
-            if (userService.isRegistered(user.getLogin()))
+            if (registrationService.isRegistered(user.getLogin()))
                 response.sendError(HttpURLConnection.HTTP_CONFLICT, "User already exists");
-            userService.register(user);
+            else
+                registrationService.register(user);
         }
         catch (Exception exc) {
+            System.out.println(exc);
             response.sendError(HttpURLConnection.HTTP_INTERNAL_ERROR, "Internal server error " + exc.getMessage());
+        }
+    }
+
+
+    @PostMapping(value = "/delete", consumes = "application/json")
+    @ApiOperation(value = "Delete registered user")
+    ResponseEntity deleteRegistration(@Valid @RequestBody UnregisterDto info) throws Exception {
+        try {
+            registrationService.deleteByLogin(info.getLogin());
+            return ResponseEntity.ok("ok");
+        }
+        catch (Exception exc) {
+            System.out.println(exc);
+            return ResponseEntity.status(HttpURLConnection.HTTP_INTERNAL_ERROR).body(exc);
         }
     }
 }

@@ -1,66 +1,12 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/db.changelog-master.yaml
-  - changeSet:
-      id: 1
-      author: postgres
-      changes:
-        - createTable:
-            tableName: registration
-            columns:
-              - column:
-                  name: id
-                  type: BIGINT
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: login
-                  type: varchar(50)
-                  constraints:
-                    unique: true
-                    nullable: false
-              - column:
-                  name: password
-                  type: varchar(512)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: email
-                  type: varchar(50)
-
-
-#  - changeSet:
-#      id: 2
-#      author: postgres
-#      comment: "Create admin user"
-#      changes:
-#        - insert:
-#            tableName: users
-#            columns:
-#              - column:
-#                  name: username
-#                  value: "admin"
-#              - column:
-#                  name: password
-#                  value: "admin"
-#              - column:
-#                  name: email
-#                  value: "admin@server.com"
-
-#        - insert:
-#            tableName: regi
-#            columns:
-#              - column:
-#                  name: username
-#                  value: "guest"
-#              - column:
-#                  name: password
-#                  value: "guest"
-#              - column:
-#                  name: email
-#                  value: "guest@server.com"
-#      rollback:
-#        - delete:
-#            tableName: users
-#            where: username in ('admin', 'guest')
+  - include:
+      file: db/changelog/registration/db.changelog-registration.yaml
+  - include:
+      file: db/changelog/registration/db.changelog-role.yaml
+  - include:
+      file: db/changelog/registration/db.changelog-registration-role.yaml
+  - include:
+      file: db/changelog/registration/db.changelog-registration-role-relation.yaml
+  - include:
+      file: db/changelog/authorization/db.changelog-authorized.yaml

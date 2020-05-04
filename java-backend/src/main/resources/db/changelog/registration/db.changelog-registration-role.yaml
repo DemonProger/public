@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-registration.yaml
+  - changeSet:
+      id: 2.2
+      author: postgres
+      changes:
+        - createTable:
+            tableName: registration_role
+            columns:
+              - column:
+                  name: registration_id
+                  type: BIGINT
+              - column:
+                  name: role_id
+                  type: BIGINT
+
+      rollback:
+        - delete:
+            tableName: registration_role

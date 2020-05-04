@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface RegistrationRepo extends CrudRepository<RegistrationEntity, Long> {
     Optional<RegistrationEntity> findByLogin(String login);
     boolean existsByLogin(String login);
+    void deleteByLogin(String login);
 }

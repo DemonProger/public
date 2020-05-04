@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Data
@@ -45,12 +46,19 @@ public class RegistrationEntity {
 //    @Column(name = "created")
 //    private Date created;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "registration_role",
+        joinColumns = {@JoinColumn(name = "registration_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<RoleEntity> roles;
+
 
     public static RegistrationEntity fromDto(RegistrationDto data) {
         return new RegistrationEntity().builder()
                 .login(data.getLogin())
                 .email(data.getEmail())
                 .password(data.getPassword())
+                .roles(List.of(new RoleEntity("user")))
                 .build();
     }
 }
