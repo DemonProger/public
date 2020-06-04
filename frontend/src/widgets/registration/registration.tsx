@@ -22,7 +22,7 @@ export const Registraion = (props: any) => {
     switch(fieldId){
       case FIELD_IDS.name:  
             props.onChangeUsername(value);
-            console.log(props.username);
+            console.log(props.username.value.length);
             break;
       case FIELD_IDS.email: 
             props.onChangeEmail(value);

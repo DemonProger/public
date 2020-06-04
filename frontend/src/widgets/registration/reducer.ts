@@ -1,4 +1,4 @@
-import  {reducer}  from './../publics/reducer';
+// import  {reducer}  from './../publics/reducer';
 import { Reducer } from 'redux'
 import actions, { TYPES } from './actions'
 import { TYPE } from '../header/actions-header'
@@ -77,14 +77,11 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
                
             }
 
-        case TYPES.TYPE_ONRESERVEDLOGIN:{
-
-            return{
+        case TYPES.TYPE_ONRESERVEDLOGIN: return {
                 ...state,
                 serverMessage: action.serverMessage
-                
             }
-        }
+        
         default:
             return state
     }   

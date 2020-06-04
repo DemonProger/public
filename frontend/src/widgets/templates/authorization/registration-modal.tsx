@@ -8,8 +8,8 @@ import userIcon from './user.svg'
 
 
 export type FieldState = {
-    value: string, 
-    isValid: boolean, 
+    value: string,
+    isValid: boolean,
     validationInfo: string | null
 }
 
@@ -19,14 +19,14 @@ export type RegistrationWindowProps = {
     email: FieldState,
     password: FieldState,
     serverMessage: string,
-    onRegisterClick(): void, 
+    onRegisterClick(): void,
     // onRegisterClick(): void,
     onCloseClick(): void,
     onFieldChanged(value: string, fieldId: string): void
 }
 
 
-export const FIELD_IDS = { 
+export const FIELD_IDS = {
     name: "name",
     email: "email",
     password: "password"
@@ -40,11 +40,11 @@ export type User = {
 
 const RegistrationWindow = (props: RegistrationWindowProps) => {
 
-    const onRegisterMessage =async()=> {
-           props.onRegisterClick();
-           alert(props.serverMessage);
+    const onRegisterMessage = async () => {
+        props.onRegisterClick();
+        alert(props.serverMessage);
     }
-     
+
     return (
         <Modal show={true} onHide={props.onCloseClick}
             aria-labelledby="contained-modal-title-vcenter"
@@ -64,8 +64,8 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control defaultValue={props.username.value} onChange={(event: any) =>  props.onFieldChanged(event.target.value, FIELD_IDS.name)}
-                                type="text" placeholder="Имя пользователя" isInvalid={props.username.validationInfo!==''} />
+                            <Form.Control defaultValue={props.username.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)}
+                                type="text" placeholder="Имя пользователя" isInvalid={!props.username.isValid} />
                             <Form.Control.Feedback type='invalid'>{props.username.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
@@ -77,8 +77,8 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={emailIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control  defaultValue={props.email.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.email)}
-                                type="email" placeholder="Электронный адрес"  isInvalid={props.email.validationInfo!==''} />
+                            <Form.Control defaultValue={props.email.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.email)}
+                                type="email" placeholder="Электронный адрес" isInvalid={!props.email.isValid} />
                             <Form.Control.Feedback type='invalid'>{props.email.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
@@ -91,7 +91,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
                             <Form.Control defaultValue={props.password.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.password)}
-                                 type="password" placeholder="Пароль"  isInvalid={props.password.validationInfo!==''}/>
+                                type="password" placeholder="Пароль" isInvalid={!props.password.isValid} />
                             <Form.Control.Feedback type='invalid'>{props.password.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
@@ -103,7 +103,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                     Зарегистрироваться
                 </Button>
                 <Button variant="info" onClick={props.onCloseClick}>
-                    Закрыть 
+                    Закрыть
                 </Button>
             </Modal.Footer>
 

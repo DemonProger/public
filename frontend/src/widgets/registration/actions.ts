@@ -21,18 +21,18 @@ export const closeClickAction = () => {
 }
 
 //Action Creator
-export const onChangeUsername = async (value: string) => {
+export const onChangeUsername = (value: string) => {
 
-    let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
+    let [flag, validationmessage]= FormValidation.isUsernameValid(value)
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
         username: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
 
-export const onChangeEmail = async(value: string) => {
+export const onChangeEmail = (value: string) => {
 
-    let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
+    let [flag, validationmessage]= FormValidation.isEmailValid(value)
 
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_EMAIL,
@@ -41,9 +41,9 @@ export const onChangeEmail = async(value: string) => {
 }
 
 
-export const onChangePassword = async(value: string) => {
+export const onChangePassword = (value: string) => {
 
-     let [flag, validationmessage]= await FormValidation.isUsernameValid(value)
+     let [flag, validationmessage]= FormValidation.isPasswordValid(value)
 
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_PASSWORD,
@@ -78,6 +78,7 @@ export const registerUser = (user: User) => async (dispatch: any) => {
     switch (resp.status) {
         case 200: return dispatch(onRegesteredUser())
         case 406: return dispatch(onReservedLogin())
+        
     }
 
     // // dispatch(onUserRegestered())
@@ -85,7 +86,6 @@ export const registerUser = (user: User) => async (dispatch: any) => {
     // dispatch(error())    
     //201-created пользователь,        
 }
-
 
 //может быть занят либо сам логин, либо сам email,
 export default {
