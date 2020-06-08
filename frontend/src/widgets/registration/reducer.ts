@@ -22,7 +22,6 @@ export type RegistrationState = {
 
 
 export const initialState: RegistrationState = {
-
     isVisible: false,
     username: {value: '', isValid: true, validationInfo: ''},
     email: {value: '', isValid: true, validationInfo: ''},

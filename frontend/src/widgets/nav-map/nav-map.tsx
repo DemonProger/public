@@ -14,10 +14,8 @@ export const Toolbar = () => {
          <Image src={doubleRightArrow} />      
          <Button variant='light' className={Styles.Button}>Пешие</Button> 
          <Image src={doubleRightArrow} />      
-         <Button variant='light' className={Styles.Button}>клиент1</Button> 
+         <Button variant='light' className={Styles.Button}>Клиент1</Button> 
     </ButtonGroup>
   )
 }
-
-
 export default Toolbar

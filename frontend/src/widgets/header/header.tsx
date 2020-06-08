@@ -8,7 +8,6 @@ import {HeaderProps} from "../templates/header/header"
 
 const Header=(props: any)=>{
 
-
     const onSomeOptionClick=(optionText: string)=>{
 
          if (optionText==='вход'){
@@ -18,7 +17,7 @@ const Header=(props: any)=>{
     
     const headerTemplateProps: HeaderProps = {
         logoText: "public", 
-        optionsList: ["вход", "карта", "информация"], 
+        optionsList: ["вход", "карта", "информация", "пользователи"], 
         isSearchEnabled: true, 
         onSomeOptionClick: onSomeOptionClick,
  

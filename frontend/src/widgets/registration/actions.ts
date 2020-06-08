@@ -76,9 +76,9 @@ export const registerUser = (user: User) => async (dispatch: any) => {
 
     const resp = await RegistrationApi.sendDataUser(user)
     switch (resp.status) {
+
         case 200: return dispatch(onRegesteredUser())
-        case 406: return dispatch(onReservedLogin())
-        
+        case 409: return dispatch(onReservedLogin())
     }
 
     // // dispatch(onUserRegestered())
