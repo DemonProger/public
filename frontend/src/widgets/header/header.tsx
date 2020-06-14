@@ -17,7 +17,7 @@ const Header=(props: any)=>{
     
     const headerTemplateProps: HeaderProps = {
         logoText: "public", 
-        optionsList: ["вход", "карта", "информация", "пользователи"], 
+        optionsList: ["вход", "главная", "карта", "информация", "пользователи"], 
         isSearchEnabled: true, 
         onSomeOptionClick: onSomeOptionClick,
  
@@ -48,4 +48,4 @@ let mapDispatchToProps=(dispatch: any)=>{
 }
 
 //connect-генерируем компонент
-export default  connect(mapStateToProps, mapDispatchToProps)(Header)  
+export default  connect(mapStateToProps, mapDispatchToProps)(Header)

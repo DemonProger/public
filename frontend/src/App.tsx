@@ -1,37 +1,39 @@
 
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import './thirdparty/bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Tollbar from './widgets/left-toolbar/left-toolbar'
+import UpperTollbar from './widgets/nav-map/nav-map'
 import CardsBox from './widgets/publics/cards-box'
-import NavMap from './widgets/nav-map/nav-map'
 import Registration from './widgets/registration/registration'
 import Header from './widgets/header/header'
-import UsersProfile from './widgets/header/userslist'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Container>
         <Header />
+        {/* <UpperTollbar/> */}
         <Row className="justify-content-md-center">
-          <NavMap />
-            <Route path='/users' component={UsersProfile}></Route>
         </Row>
         <Row>
           <Col sm={3} className="d-none d-sm-block">
-            <Tollbar />
+            <Tollbar/>
           </Col>
           <Col sm={9}>
-            <CardsBox />
+            {/* <CardsBox /> */}
+            {/* <Route path='/' component={App}></Route>  */}
+            {/* <Route path='/home' component={CardsBox}></Route> */}
+            {/* <Route path='/main' component={MainPage}> </Route> */}
+            <Route path='/users' render={()=><CardsBox/>}></Route>
           </Col>
+
         </Row>
-        <Registration/>
+        <Registration />
       </Container>
     </BrowserRouter>
   )
 }
-
 export default App

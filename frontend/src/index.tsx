@@ -12,11 +12,13 @@ import { combineReducers } from "redux"
 import { Provider } from 'react-redux'
 import publicsReducer from './widgets/publics/reducer'
 import registrationReducer from './widgets/registration/reducer'
+import usersReducer from './widgets/header/reducer'
 
 
 const rootReducer = combineReducers({
     publicsReducer, 
-    registrationReducer
+    registrationReducer,
+    usersReducer
 })
 
 
@@ -29,4 +31,3 @@ ReactDOM.render(
 
 
 serviceWorker.unregister()
-

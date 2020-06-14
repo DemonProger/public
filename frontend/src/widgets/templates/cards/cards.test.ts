@@ -1,18 +1,18 @@
 
 
-import ReactDom from 'react-dom'
-import Card, { PublicCartProps } from './public-card'
+// import ReactDom from 'react-dom'
+// import Card, { PublicCartProps } from './public-card'
 
 
-test("cards template render test...", () => {
+// test("cards template render test...", () => {
 
-    const div = document.createElement('div')   
+//     const div = document.createElement('div')   
 
-    const props: PublicCartProps = {
-        title: "test title", 
-        text: "test text", 
-        key: 0
-    }
+//     const props: PublicCartProps = {
+//         title: "test title", 
+//         text: "test text", 
+//         key: 0
+//     }
         
-    ReactDom.render(Card(props), div)
-})
+//     ReactDom.render(Card(props), div)
+// })

@@ -1,13 +1,15 @@
 
 
-.Group {
-    margin: 8px;    
+.Group { 
+    margin-top: 20px;    
     box-shadow: 4px 4px 2px lightgray;
+    background-color: #007bff;
 }
 
 .Button {    
     margin: 4px;    
     border: none;
     background: transparent;
-    color: black;        
+    color: white;   
+    font-size: 18px;
 }

@@ -5,38 +5,55 @@ import { CardDeck } from 'react-bootstrap'
 import PublicCard from '../templates/cards/public-card'
 import Styles from './styles.module.css'
 import { connect } from 'react-redux'
+import actions from '../header/actions-header'
+import {PublicCartProps} from '../../widgets/templates/cards/public-card'
 
+export const CardsBox = (props: any) => {
+  
 
-export const CardsBox = () => {
+  const getUsersProfiles=()=>{
+    props.setUsers()
+  }
+  
+  const stateProps: PublicCartProps={
+       users: props.users,
+       getUsersProfiles,
 
-  let items : any [] = []
-  for (let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
-    items.push((
-      <PublicCard key={i} title="test title" text="test text"/>
-    ))
+  }
 
-  return (
-    <CardDeck className={Styles.CardWrapper}>
-      {
-        items
-      }
-    </CardDeck>
+  return(
+    <PublicCard {...stateProps}/>
   )
+
 }
-
-
-/// export default CardsBox
 
 const mapStateToProps = (state: any) => {
   return {
-      
+      ...state.usersReducer
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-     
+     setUsers:() => dispatch(actions.getDataUsers)
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(CardsBox)
+// let items : any [] = []
+  // for (let i of [1, 2, 3,4, 5, 6])
+  //   items.push((
+  //     <PublicCard title="username" text="adress" img="gggdas"/>
+  //   ))
+
+// let userCards = []
+  // for (const userData of [1, 2, 3])
+  //   userCards.push((<p>{userData}<p>))
+
+  // return (
+  //   <CardDeck className={Styles.CardWrapper}>
+  //     hello
+  //   </CardDeck>
+  // )
+  // }

@@ -1,13 +1,14 @@
 
 .CardWrapper {
-  
+  margin: 15px 0 20px 0
 }
 
+
 .Card {
-  margin: 8px;
   box-shadow: 5px 5px 5px lightgray;
   width: 100%;
 }
+
 
 .Card:hover {
   cursor: pointer;

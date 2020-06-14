@@ -1,6 +1,9 @@
 
+import UsersProfiles from './usersdata'
+
 export const TYPE={
-    TYPE_CLICK_ENTRANCE: "clicked-entrance"
+    TYPE_CLICK_ENTRANCE: "clicked-entrance",
+    TYPE_GET_DATA_USERS: "data-users"
 }
 
 
@@ -12,7 +15,23 @@ export const onEntranceClick=()=>{
 
 }
 
+export const setserverUsers=(resp: JSON)=>{
+    
+    return{
+        type: TYPE.TYPE_GET_DATA_USERS,
+        users: resp
+    }
+}
+
+export  const getDataUsers=()=> async(dispatch: any)=>{
+    
+    const resp = await UsersProfiles.getDataUser();
+     
+    return dispatch(setserverUsers(resp))
+
+}
 
 export default {
-    onEntranceClick
-}
+    onEntranceClick,
+    getDataUsers
+} 
