@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/registration")
 public class RegistrationController {
 
@@ -29,6 +30,7 @@ public class RegistrationController {
     }
 
 
+    // @CrossOrigin(origins = "http://localhost:8080/registration/all", methods = { "GET" })
     @GetMapping(value = "/all", produces = "application/json")
     @ApiOperation(value = "View a list of registered users", response = RegistrationEntity.class)
     @ApiResponses(value = {@ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Some internal error")})

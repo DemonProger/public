@@ -10,8 +10,8 @@
         <module name="speaker-tools" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11">
-      <module name="speaker-tools" target="11" />
+    <bytecodeTargetLevel target="12">
+      <module name="speaker-tools" target="12" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
