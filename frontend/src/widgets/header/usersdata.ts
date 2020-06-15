@@ -1,11 +1,13 @@
 
 
 class UsersProfiles{
-    async getDataUser(): Promise<any>{
+    async getUsers(): Promise<any>{
 
-        let response = await fetch(`${process.env.BACK_URL || "http://localhost:3000"}/user`)
+        let response = await fetch("http://localhost:8080/registration/getAll")
 
         let usersformat=await response.json();
+         
+        console.log();
 
         return usersformat;
     }

@@ -15,14 +15,15 @@ export const initialState: UsersProfileState = {
     users: []
 }
 
-export const reducer: Reducer<any> = (state: UsersProfileState = initialState, action: any)=>{
+export const reducer: Reducer<any> = (state: UsersProfileState = initialState, action: any) => {
     switch (action.type) {
 
         case TYPE.TYPE_GET_DATA_USERS:
             return {
-                ...state,
                 users: action.users
             }
+        default:
+            return state
 
     }
 }

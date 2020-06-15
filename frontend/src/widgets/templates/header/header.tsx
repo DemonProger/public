@@ -37,7 +37,7 @@ const Header = (props: HeaderProps) => {
         <Image src={dashboardIcon} className={Styles.LogoIcon} />
         {props.logoText}
       </Navbar.Brand>
-      <Nav className="mr-auto" >
+      <Nav className="mr-auto">
         {
           props.optionsList.map(optionText => createTitle(optionText)
           )

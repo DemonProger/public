@@ -25,7 +25,7 @@ export const setserverUsers=(resp: JSON)=>{
 
 export  const getDataUsers=()=> async(dispatch: any)=>{
     
-    const resp = await UsersProfiles.getDataUser();
+    const resp = await UsersProfiles.getUsers();
      
     return dispatch(setserverUsers(resp))
 

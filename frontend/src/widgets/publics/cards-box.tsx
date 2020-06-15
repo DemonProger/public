@@ -1,7 +1,6 @@
 
  
 import * as React from "react"
-import { CardDeck } from 'react-bootstrap'
 import PublicCard from '../templates/cards/public-card'
 import Styles from './styles.module.css'
 import { connect } from 'react-redux'
@@ -10,11 +9,11 @@ import {PublicCartProps} from '../../widgets/templates/cards/public-card'
 
 export const CardsBox = (props: any) => {
   
-
+  
   const getUsersProfiles=()=>{
     props.setUsers()
   }
-  
+
   const stateProps: PublicCartProps={
        users: props.users,
        getUsersProfiles,
@@ -29,7 +28,7 @@ export const CardsBox = (props: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-      ...state.usersReducer
+      ...state.usersReducer 
   }
 }
 
@@ -38,7 +37,6 @@ const mapDispatchToProps = (dispatch: any) => {
      setUsers:() => dispatch(actions.getDataUsers)
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsBox)
 // let items : any [] = []
@@ -57,3 +55,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(CardsBox)
   //   </CardDeck>
   // )
   // }
+  
