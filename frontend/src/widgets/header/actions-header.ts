@@ -15,7 +15,7 @@ export const onEntranceClick=()=>{
 
 }
 
-export const setserverUsers=(resp: JSON)=>{
+export const setserverUsers=(resp: any[])=>{
     
     return{
         type: TYPE.TYPE_GET_DATA_USERS,
@@ -23,9 +23,9 @@ export const setserverUsers=(resp: JSON)=>{
     }
 }
 
-export  const getDataUsers=()=> async(dispatch: any)=>{
+export const getDataUsers=()=> async(dispatch: any)=>{
     
-    const resp = await UsersProfiles.getUsers();
+    const resp = (await UsersProfiles.getUsers());
      
     return dispatch(setserverUsers(resp))
 

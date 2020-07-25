@@ -6,20 +6,22 @@ import Styles from './styles.module.css'
 
 export type PublicCartProps = {
 
-  users: any[],
-  getUsersProfiles(): void
+  users: any[]
+  
 }
 
 export const PublicCard = (props: PublicCartProps) => {
-
-  /*const setUsersData = () => {
+  
+   /*const setUsersData = () => {
     props.getUsersProfiles()
   }*/
-
   //setUsersData()
+
+  //  props.getUsersProfiles();
   return (
-    <CardDeck className={Styles.CardWrapper} {...props.getUsersProfiles}>
-       
+
+    <CardDeck className={Styles.CardWrapper} >
+
       {props.users.map((cardEl, key) =>
         <Col xs={12} sm={4}>
           <Card className={Styles.Card} key={key}>
@@ -35,5 +37,5 @@ export const PublicCard = (props: PublicCartProps) => {
     </CardDeck>
   )
 }
+
 export default PublicCard
- 

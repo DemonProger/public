@@ -1,40 +1,55 @@
 
- 
 import * as React from "react"
+import { useEffect } from 'react'
 import PublicCard from '../templates/cards/public-card'
 import Styles from './styles.module.css'
 import { connect } from 'react-redux'
 import actions from '../header/actions-header'
-import {PublicCartProps} from '../../widgets/templates/cards/public-card'
+import { PublicCartProps } from '../../widgets/templates/cards/public-card'
+import { HeaderProps } from "../templates/header/header"
 
 export const CardsBox = (props: any) => {
+
+  // let [users, setUsers]=React.useState(props.users)
+
+  const {setUsers}=props
+
+  useEffect(() => {
+
+    setUsers()
+
+  }, [setUsers])
   
+  console.log(props.users)
   
-  const getUsersProfiles=()=>{
-    props.setUsers()
+  // props.setUsers()
+
+
+  // const onSetUsers=()=>{
+  //   props.setUsers()
+  // }
+
+  const stateProps: PublicCartProps = {
+
+    users: props.users
+
   }
 
-  const stateProps: PublicCartProps={
-       users: props.users,
-       getUsersProfiles,
-
-  }
-
-  return(
-    <PublicCard {...stateProps}/>
+  return (
+    <PublicCard {...stateProps} />
   )
 
 }
 
 const mapStateToProps = (state: any) => {
   return {
-      ...state.usersReducer 
+    ...state.usersReducer
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-     setUsers:() => dispatch(actions.getDataUsers)
+    setUsers: () => dispatch(actions.getDataUsers())
   }
 }
 
@@ -55,4 +70,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(CardsBox)
   //   </CardDeck>
   // )
   // }
-  

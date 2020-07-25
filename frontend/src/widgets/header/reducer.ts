@@ -7,7 +7,7 @@ import { ReducerWithoutAction } from 'react'
 
 export type UsersProfileState = {
 
-    users: any[]
+    users: any[],
 }
 
 export const initialState: UsersProfileState = {

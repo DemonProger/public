@@ -5,15 +5,18 @@ import { FIELD_IDS } from './../templates/authorization/registration-modal'
 class RegistrationApi {
     async sendDataUser(userObject: User): Promise<Response> {
 
-        let response = await fetch(`${process.env.BACK_URL || "http://localhost:3000"}/user`, {
-            mode: 'no-cors',
-            method: 'POST',
+        let response = await fetch('http://localhost:8080/registration/register' , {
+            mode: 'cors',
+            method: 'post',
             headers: {
-                'Content-Type': 'application/json',
-                'Origin': 'http://localhost:3000'
+                'Content-Type': "application/json"
 
             },
+            // body: JSON.stringify(userObject)
             body: JSON.stringify(userObject)
+            
+            // body: userObject.
+           
 
         });
 
@@ -21,5 +24,7 @@ class RegistrationApi {
     }
     
 }
-
-export default new RegistrationApi();
+// "http://localhost:3000"
+// /user
+// process.env.BACK_URL ||
+export default new RegistrationApi(); 

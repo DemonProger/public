@@ -6,15 +6,14 @@ import dashboardIcon from './dashboard.svg'
 import Styles from './styles.module.css'
 import { NavLink } from 'react-router-dom'
 
-
 export type HeaderProps = {
   logoText: string,
   optionsList: string[],
   isSearchEnabled: boolean,
   searchClickHandler(searchText: string): void,
-  onSomeOptionClick(optionText: string): void
-}
+  onSomeOptionClick(optionText: string): void,
 
+}
 
 const Header = (props: HeaderProps) => {
 
@@ -30,7 +29,7 @@ const Header = (props: HeaderProps) => {
       default: return (<Nav.Link style={{ color: 'white' }} key={optionText}>{optionText}</Nav.Link>)
     }
   }
-
+  
   return (
     <Navbar bg="primary" variant="light">
       <Navbar.Brand className={Styles.BrandWrapper}>
@@ -62,4 +61,4 @@ const Header = (props: HeaderProps) => {
 }
 
 export default Header
-//className={Route} component={UsersProfiles} path='/users'
+//className={Route} component={UsersProfiles} path='/users'  

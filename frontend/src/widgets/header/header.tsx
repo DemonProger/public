@@ -5,7 +5,6 @@ import {TYPE} from './actions-header';
 import HeaderTemplate from "../templates/header/header"
 import {HeaderProps} from "../templates/header/header"
 
-
 const Header=(props: any)=>{
 
     const onSomeOptionClick=(optionText: string)=>{
@@ -21,8 +20,8 @@ const Header=(props: any)=>{
         isSearchEnabled: true, 
         onSomeOptionClick: onSomeOptionClick,
  
-        searchClickHandler: props.searchClickHandler
-
+        searchClickHandler: props.searchClickHandler,
+        
     }
      return(
            <HeaderTemplate {...headerTemplateProps}/>

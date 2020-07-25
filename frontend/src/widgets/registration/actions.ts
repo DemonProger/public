@@ -26,7 +26,7 @@ export const onChangeUsername = (value: string) => {
     let [flag, validationmessage]= FormValidation.isUsernameValid(value)
     return {
         type: TYPES.TYPE_ONCHANGE_FIELD_USERNAME,
-        username: {value: value,  isValid: flag, validationInfo: validationmessage}
+        login: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
 
@@ -39,7 +39,6 @@ export const onChangeEmail = (value: string) => {
         email: {value: value,  isValid: flag, validationInfo: validationmessage}
     }
 }
-
 
 export const onChangePassword = (value: string) => {
 

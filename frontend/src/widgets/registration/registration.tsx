@@ -6,13 +6,14 @@ import actions, { TYPES} from './actions'
 
 
 export const Registraion = (props: any) => {
-
+  
   const onCloseClick = () => {
     props.onCloseClick()
   }
   
   const user: User={
-    username: props.username.value,
+    
+    login: props.login.value,
     email: props.email.value,
     password: props.password.value
   
@@ -22,7 +23,7 @@ export const Registraion = (props: any) => {
     switch(fieldId){
       case FIELD_IDS.name:  
             props.onChangeUsername(value);
-            console.log(props.username.value.length);
+            // console.log(props.login.value.length);
             break;
       case FIELD_IDS.email: 
             props.onChangeEmail(value);
@@ -39,10 +40,10 @@ export const Registraion = (props: any) => {
          props.registerUser(user)
 
   }
-
+  
   const templateProps: RegistrationWindowProps = {
 
-    username: props.username,
+    login: props.login,
     email: props.email,
     password: props.password,
     serverMessage: props.serverMessage,
@@ -51,6 +52,23 @@ export const Registraion = (props: any) => {
     onRegisterClick
   }
 
+  
+  // const renderRgistrationWindowIfVisible = () => {
+  //   if (props.isVisible) 
+  //     return <RegistrationWindow {...templateProps} />
+  //   else
+  //     return <> </> 
+  // }
+
+  // const x = true 
+
+  // if (x == true ) 
+  //   console.log("HI")
+
+  // x && console.log("HI")
+  // x && RegistrationWindow(...templateProps)
+
+
   return (
     <>
       {
@@ -58,6 +76,7 @@ export const Registraion = (props: any) => {
         &&
         // <RegistrationWindow onCloseClick={onCloseClick} username={props.username} email={props.email}  password={props.password}/>
         <RegistrationWindow {...templateProps} />
+        // renderRgistrationWindowIfVisible()
       }
     </>
   )
@@ -69,11 +88,11 @@ const mapStateToProps = (state: any) => {
     ...state.registrationReducer
   }
 }
-
+ 
 const mapDispatchToProps = (dispatch: any) => {
   
   return {
-    onCloseClick: () => dispatch(actions.closeClickAction),
+    onCloseClick: () => dispatch(actions.closeClickAction()),
 
     onChangeUsername: (value: string) => dispatch(actions.onChangeUsername(value)),
 

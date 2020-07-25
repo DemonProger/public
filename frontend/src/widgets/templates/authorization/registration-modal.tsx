@@ -15,7 +15,7 @@ export type FieldState = {
 
 export type RegistrationWindowProps = {
 
-    username: FieldState,
+    login: FieldState,
     email: FieldState,
     password: FieldState,
     serverMessage: string,
@@ -25,7 +25,6 @@ export type RegistrationWindowProps = {
     onFieldChanged(value: string, fieldId: string): void
 }
 
-
 export const FIELD_IDS = {
     name: "name",
     email: "email",
@@ -33,7 +32,7 @@ export const FIELD_IDS = {
 }
 
 export type User = {
-    username: string,
+    login: string,
     email: string,
     password: string
 }
@@ -42,7 +41,7 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
 
     const onRegisterMessage = async () => {
         props.onRegisterClick();
-        alert(props.serverMessage);
+        // alert(props.serverMessage);
     }
 
     return (
@@ -64,9 +63,9 @@ const RegistrationWindow = (props: RegistrationWindowProps) => {
                                     <Image src={userIcon} />
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control defaultValue={props.username.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)}
-                                type="text" placeholder="Имя пользователя" isInvalid={!props.username.isValid} />
-                            <Form.Control.Feedback type='invalid'>{props.username.validationInfo}</Form.Control.Feedback>
+                            <Form.Control defaultValue={props.login.value} onChange={(event: any) => props.onFieldChanged(event.target.value, FIELD_IDS.name)}
+                                type="text" placeholder="Имя пользователя" isInvalid={!props.login.isValid} />
+                            <Form.Control.Feedback type='invalid'>{props.login.validationInfo}</Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="formGroupEmail">

@@ -1,16 +1,19 @@
 
+class UsersProfiles {
 
-class UsersProfiles{
-    async getUsers(): Promise<any>{
+    async getUsers(): Promise<any> {
 
-        let response = await fetch("http://localhost:8080/registration/getAll")
+        const resp = await fetch('http://localhost:8080/registration/all', {mode: 'cors'} )
 
-        let usersformat=await response.json();
-         
-        console.log();
+        // const usersformat=await response.json()
+        let usersformat=await resp.json()
+
+        // console.log(usersformat);
+        // { mode: 'no-cors' }
+        
 
         return usersformat;
     }
     
-}   
-export default new UsersProfiles(); 
+}
+export default new UsersProfiles();

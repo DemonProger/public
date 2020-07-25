@@ -1,3 +1,5 @@
+// import { reducer } from './../publics/reducer';
+// import {reducer} from './../header/reducer';
 // import  {reducer}  from './../publics/reducer';
 import { Reducer } from 'redux'
 import actions, { TYPES } from './actions'
@@ -14,16 +16,15 @@ export type FieldState = {
 export type RegistrationState = {
 
     isVisible?: boolean,
-    username: FieldState,
+    login: FieldState,
     email: FieldState,
     password: FieldState,
     serverMessage: string
 }
 
-
 export const initialState: RegistrationState = {
     isVisible: false,
-    username: {value: '', isValid: true, validationInfo: ''},
+    login: {value: '', isValid: true, validationInfo: ''},
     email: {value: '', isValid: true, validationInfo: ''},
     password: {value: '', isValid: true, validationInfo: ''},
     serverMessage: ''
@@ -35,8 +36,11 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
 
         case TYPES.TYPE_CLOSE_CLICK: 
             return {
-                ...state,
-                isVisible: false
+                login: '',
+                email: '',
+                password: '',
+                isVisible: false,
+                isValid: true
             }
 
 
@@ -45,12 +49,11 @@ export const reducer: Reducer<any> = (state: RegistrationState = initialState, a
                 ...state,
                 isVisible: true
             }
-
-
+        
         case TYPES.TYPE_ONCHANGE_FIELD_USERNAME:
             return {
                 ...state,
-                username: action.username
+                login: action.login
             }
 
 
